@@ -9,4 +9,6 @@ function onSignIn(googleUser) {
     nameUser = profile.getName();
     imgUser = profile.getImageUrl();
     emailUser = profile.getEmail();
+    console.log(googleUser)
+    console.log(profile)
 }
