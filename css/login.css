@@ -1,0 +1,86 @@
+#macbook-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background: url("../img/cover_back.png") no-repeat;
+  background-size: cover;
+}
+
+#login-page {
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-container {
+  width: 100%;
+  max-width: 400px;
+  color: white;
+  padding: 0 1rem;
+}
+
+#login-container #logo {
+  margin-bottom: 40px;
+  text-align: center;
+}
+#login-container #logo img {
+  height: 70px;
+  width: auto;
+}
+
+#login-container form {
+  color: #333333;
+  padding: 22px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+}
+
+#login-container .form-control {
+  height: 40px;
+  border-radius: 2px;
+}
+
+#login-container .btn {
+  background-color: #ef6c00;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 2px;
+}
+
+#login-container .btn:hover {
+  background-color: #e65100;
+}
+
+#login-container .checkbox {
+  margin: 0;
+}
+
+#login-container #forgot-password {
+  text-align: center;
+  margin: 20px 0 0 0;
+  font-size: 0.8rem;
+}
+
+#login-container #forgot-password a {
+  color: #cccccc;
+}
+
+div.error {
+  color: #d32f2f;
+  font-size: 0.8rem;
+  padding: 4px 0;
+}
+input.error {
+  border-color: #d32f2f;
+}
