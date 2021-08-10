@@ -24,8 +24,6 @@ function showCategoriesList(array){
             </div>
         </div>
         `
-
-
     document.getElementById("main").innerHTML = htmlContentToAppend;
     }
 }
