@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             list_products = resultObj.data;
-            console.log(list_products[0].name)
             showCategoriesList(list_products);
         }
     });
