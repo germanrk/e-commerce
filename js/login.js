@@ -1,6 +1,5 @@
 let idUser = ``;
-let firstNameUser = ``;
-let lastNameUser = ``;
+let nameUser = ``;
 let imgUser = ``;
 let emailUser = ``;
 
@@ -8,18 +7,15 @@ function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     var idTokenUser = googleUser.getAuthResponse().id_token;
     idUser = profile.getId();
-    firstNameUser = profile.getFirstName();
-    lastNameUser = profile.getLasName();
+    nameUser = profile.getName();
     imgUser = profile.getImageUrl();
     emailUser = profile.getEmail();
     console.log(googleUser);
     console.log(profile);
     console.log(idTokenUser);
-    console.log(firstNameUser)
     console.log(idUser)
-    console.log(lastNameUser)
 
-    if(idUser){
+    if(nameUser){
         let htmlContentToAppend = "";
         htmlContentToAppend += `
             <div><a class="btn btn-denger" href="./inicio.html">Entrar</a></div>
