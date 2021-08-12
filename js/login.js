@@ -16,14 +16,6 @@ function onSignIn(googleUser) {
     console.log(idTokenUser);
     console.log(idUser)
     window.location.href="./inicio.html";
-    let htmlContentToAppend = ``;
-        htmlContentToAppend += `
-            <div class="mt-2">
-                <a href="#" onclick="signOut();">Cerrar Sesion</a>
-                <img src="`+ imgUser +`">
-            </div>
-        `
-        document.getElementById("intro").innerHTML = htmlContentToAppend;
 }
 
 function signOut() {
