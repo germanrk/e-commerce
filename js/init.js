@@ -39,55 +39,6 @@ var getJSONData = function(url){
         return result;
     });
 }
-//
-//Login con google
-//
-
-let idUser = ``;
-let nameUser = ``;
-let imgUser = ``;
-let emailUser = ``;
-
-function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    var idTokenUser = googleUser.getAuthResponse().id_token;
-    idUser = profile.getId();
-    nameUser = profile.getName();
-    imgUser = profile.getImageUrl();
-    emailUser = profile.getEmail();
-    console.log(googleUser);
-    console.log(profile);
-    console.log(idTokenUser);
-    console.log(idUser)
-
-    if(nameUser){
-        let htmlContentToAppend = "";
-        let htmlImg =``;
-        htmlContentToAppend += `
-            <div class="mt-2"><a class="btn btn-denger" href="./inicio.html">Entrar</a></div>
-            <div class="mt-2"><a href="#" onclick="signOut();">Sign out</a></div>
-
-        `
-        document.getElementById("intro").innerHTML = htmlContentToAppend;
-
-        htmlImg+=`
-          <img href="`+ imgUser +`"
-        `
-        document.getElementById("imgGoogle").innerHTML = htmlImg;
-    }
-}
-
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-
-  //
-  //
-  //
-
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
