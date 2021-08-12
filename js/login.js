@@ -2,10 +2,11 @@ let idUser = ``;
 let nameUser = ``;
 let imgUser = ``;
 let emailUser = ``;
+let idTokenUser =``;
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    var idTokenUser = googleUser.getAuthResponse().id_token;
+    idTokenUser = googleUser.getAuthResponse().id_token;
     idUser = profile.getId();
     nameUser = profile.getName();
     imgUser = profile.getImageUrl();
@@ -14,9 +15,11 @@ function onSignIn(googleUser) {
     console.log(profile);
     console.log(idTokenUser);
     console.log(idUser)
-        // <div class="mt-2" id="btn-intro"><a class="btn btn-denger" href="./inicio.html">Entrar</a></div>
+    window.location.href="./inicio.html";
+    let htmlContentToAppend = ``;
         htmlContentToAppend += `
-            <div class="mt-2"><a href="#" onclick="signOut();">Sign out</a>
+            <div class="mt-2">
+                <a href="#" onclick="signOut();">Cerrar Sesion</a>
                 <img src="`+ imgUser +`">
             </div>
         `
