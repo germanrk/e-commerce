@@ -3,7 +3,11 @@ let nameUser = ``;
 let imgUser = ``;
 let emailUser = ``;
 let idTokenUser =``;
-
+// 
+// 
+//inicio de sesion con google
+// 
+// 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     idTokenUser = googleUser.getAuthResponse().id_token;
@@ -11,22 +15,14 @@ function onSignIn(googleUser) {
     nameUser = profile.getName();
     imgUser = profile.getImageUrl();
     emailUser = profile.getEmail();
-    console.log(googleUser);
-    console.log(profile);
-    console.log(idTokenUser);
-    console.log(idUser);
+    console.log(nameUser);
     window.location.href="./inicio.html";
 }
-
-function showElement(id) {
-    var x = document.getElementById(id);
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
+// 
+// 
+// validacion a traves de un login nativo
+// 
+// 
 function verificationStatus(id){
   if(($("#"+id+"").css("display") === "none")){
     $("#"+id+"").slideDown();
@@ -34,12 +30,17 @@ function verificationStatus(id){
     $("#"+id+"").fadeOut();
   }
 }
+// 
+// 
+// show de alert error de login
+// 
+// 
 function validationLogin(){
     let email = document.getElementById("email-login").value;
     let pass = document.getElementById("password-login").value;
-    if((email === ``) && (pass === ``)){
+    if((email ===``) && (pass ===``)){
       verificationStatus("alert-email-pass")
-    }else if(email === ``){
+    }else if(email ===``){
       verificationStatus("alert-email")
     }else if(pass === ``){
       verificationStatus("alert-pass")
@@ -47,9 +48,23 @@ function validationLogin(){
     if((email === `user`) && (pass === `user`)){
         window.location.href="./inicio.html"
       }else{(email != `user`) && (pass != `user`)
-        $("#alert-help").show()
+        // $("#alert-help").show()
+        verificationStatus("alert-help")
       }
   }
+
+  $("#password-login").keyup(function (event) {
+
+    if (event.keyCode == 13) {
+        $("#btn-login").click();
+    }
+});
+  $("#email-login").keyup(function (event) {
+
+    if (event.keyCode == 13) {
+        $("#btn-login").click();
+    }
+});
 
 document.getElementById("btn-login").onclick=function(){
     validationLogin();
