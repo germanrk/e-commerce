@@ -14,7 +14,7 @@ function onSignIn(googleUser) {
     console.log(googleUser);
     console.log(profile);
     console.log(idTokenUser);
-    console.log(idUser)
+    console.log(idUser);
     window.location.href="./inicio.html";
 }
 
@@ -35,3 +35,25 @@ function showElement(id) {
         x.style.display = "none";
     }
 }
+function validationLogin(){
+    let email = document.getElementById("email-login").value;
+    let pass = document.getElementById("password-login").value;
+    if((email === ``) && (pass === ``)){
+        $("#alert-email-pass").show(300)
+    }else if(email === ``){
+        $("#alert-email").show(300)
+      // alert("Le falto poner su email");
+    }else if(pass === ``){
+        $("#alert-pass").show(300)
+      // alert("Le falto poner su password");
+    }
+    if((email === `user`) && (pass === `user`)){
+        window.location.href="./inicio.html"
+      }else{(email != `user`) && (pass != `user`)
+        $("#alert-help").show(300)
+      }
+  }
+
+document.getElementById("btn-login").onclick=function(){
+    validationLogin();
+  }

@@ -101,5 +101,17 @@ input.error {
 }
 #login-google{
   background-color: wheat;
-  padding-bottom: 10px;
+  padding: 10px;
+}
+#alert-email{
+  display: none;
+}
+#alert-pass{
+  display: none;
+}
+#alert-email-pass{
+  display: none;
+}
+#alert-help{
+  display: none;
 }
