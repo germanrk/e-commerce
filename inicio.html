@@ -22,10 +22,15 @@
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
         <div class="mt-2" id="intro">
-          <a href="./index.html" onclick="signOut();">Cerrar sesion </a>
+          <a href="./index.html" id="signOut">Cerrar sesion </a>
           <div id="imgGoogle">
             <img src=" + `imgUser` + ">
           </div>
+        </div>
+        <div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
         </div>
       </div>
     </nav>
@@ -109,7 +114,6 @@
       </div>
     </footer>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="js/login.js"></script>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>

@@ -18,15 +18,6 @@ function onSignIn(googleUser) {
     window.location.href="./inicio.html";
 }
 
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-      window.location.href="./index.html";
-      showElement(btn-intro);
-      showElement(login-google);
-    });
-  }
 function showElement(id) {
     var x = document.getElementById(id);
     if (x.style.display === "none") {
@@ -35,22 +26,35 @@ function showElement(id) {
         x.style.display = "none";
     }
 }
+// function verificationStatus(id){
+//   if(($("#"+id+"").css("display") === "none")){
+//     $("#"+id+"").css("display") = "block"
+//   }else if(($("#"+id+"").css("display") === "block")){
+//     $("#"+id+"").css("display") = "none"
+//   }
+// }
+
+function verificationStatus(id){
+  if(($("#"+id+"").css("display") === "none")){
+    $("#"+id+"").slideDown();
+  }else if(($("#"+id+"").css("display") === "block")){
+    $("#"+id+"").fadeOut();
+  }
+}
 function validationLogin(){
     let email = document.getElementById("email-login").value;
     let pass = document.getElementById("password-login").value;
     if((email === ``) && (pass === ``)){
-        $("#alert-email-pass").show(300)
+      verificationStatus("alert-email-pass")
     }else if(email === ``){
-        $("#alert-email").show(300)
-      // alert("Le falto poner su email");
+      verificationStatus("alert-email")
     }else if(pass === ``){
-        $("#alert-pass").show(300)
-      // alert("Le falto poner su password");
+      verificationStatus("alert-pass")
     }
     if((email === `user`) && (pass === `user`)){
         window.location.href="./inicio.html"
       }else{(email != `user`) && (pass != `user`)
-        $("#alert-help").show(300)
+        $("#alert-help").show()
       }
   }
 
