@@ -26,13 +26,6 @@ function showElement(id) {
         x.style.display = "none";
     }
 }
-// function verificationStatus(id){
-//   if(($("#"+id+"").css("display") === "none")){
-//     $("#"+id+"").css("display") = "block"
-//   }else if(($("#"+id+"").css("display") === "block")){
-//     $("#"+id+"").css("display") = "none"
-//   }
-// }
 
 function verificationStatus(id){
   if(($("#"+id+"").css("display") === "none")){
