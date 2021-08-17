@@ -8,6 +8,7 @@ let idTokenUser =``;
 //inicio de sesion con google
 // 
 // 
+
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     idTokenUser = googleUser.getAuthResponse().id_token;
@@ -17,6 +18,9 @@ function onSignIn(googleUser) {
     emailUser = profile.getEmail();
     console.log(nameUser);
     window.location.href="./inicio.html";
+    localStorage.setItem('name',''+ nameUser +'');
+    localStorage.setItem('img',''+ imgUser +'');
+    localStorage.setItem('token',''+ idTokenUser +'');
 }
 // 
 // 

@@ -14,6 +14,8 @@ var showSpinner = function(){
 var hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
 }
+let getName = localStorage.getItem('name');
+document.getElementById("signOut").innerText(getName)
 
 var getJSONData = function(url){
     var result = {};
