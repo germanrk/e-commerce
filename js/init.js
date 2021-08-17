@@ -15,7 +15,10 @@ var hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 let getName = localStorage.getItem('name');
-document.getElementById("signOut").innerText(getName)
+let getImg = localStorage.getItem('img');
+let getToken = localStorage.getItem('token');
+document.getElementById("spanName").innerHTML="getName";
+document.getElementById("imgGoogle").src="getImg";
 
 var getJSONData = function(url){
     var result = {};

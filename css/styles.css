@@ -139,3 +139,7 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+#spanName{
+  color: white;
+  margin-left: 10px;
+}
