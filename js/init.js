@@ -17,8 +17,8 @@ var hideSpinner = function(){
 let getName = localStorage.getItem('name');
 let getImg = localStorage.getItem('img');
 let getToken = localStorage.getItem('token');
-document.getElementById("spanName").innerHTML="getName";
-document.getElementById("imgGoogle").src="getImg";
+document.getElementById("spanName").innerHTML= getName;
+document.getElementById("imgGoogle").src= getImg;
 
 var getJSONData = function(url){
     var result = {};
