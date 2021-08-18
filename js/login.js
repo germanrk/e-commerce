@@ -3,6 +3,7 @@ let nameUser = ``;
 let imgUser = ``;
 let emailUser = ``;
 let idTokenUser =``;
+let log = false;
 // 
 // 
 //inicio de sesion con google
@@ -21,6 +22,7 @@ function onSignIn(googleUser) {
     localStorage.setItem('name',''+ nameUser +'');
     localStorage.setItem('img',''+ imgUser +'');
     localStorage.setItem('token',''+ idTokenUser +'');
+    log = true;
 }
 // 
 // 

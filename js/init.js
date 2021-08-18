@@ -6,6 +6,7 @@ const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678
 const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+let appendNav = ``;
 
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -17,8 +18,6 @@ var hideSpinner = function(){
 let getName = localStorage.getItem('name');
 let getImg = localStorage.getItem('img');
 let getToken = localStorage.getItem('token');
-document.getElementById("spanName").innerHTML= getName;
-document.getElementById("imgGoogle").src= getImg;
 
 var getJSONData = function(url){
     var result = {};
@@ -44,6 +43,30 @@ var getJSONData = function(url){
         return result;
     });
 }
+function showLogout(){
+  if(getName){
+    appendNav += `
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img class="imgPerfil" src="`+getImg+`">
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+getName+`</a>
+        <a class="dropdown-item" href="./index.html">Cerrar Sesion</a>
+      </div>
+    `
+  }else{
+    appendNav += `
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img class="imgPerfil" src="https://www.prensalibre.com/wp-content/uploads/2019/05/1467646262_522853_1467646344_noticia_normal.jpg?quality=82&w=664">
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">User</a>
+        <a class="dropdown-item" href="./index.html">Cerrar Sesion</a>
+      </div>
+    `
+  }
+  document.getElementById("logout").innerHTML = appendNav;
+}
     function signOut() {
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function () {
@@ -56,7 +79,8 @@ var getJSONData = function(url){
     //que el documento se encuentra cargado, es decir, se encuentran todos los
     //elementos HTML presentes.
     document.addEventListener("DOMContentLoaded", function(e){
-      document.getElementById("signOut").onclick = function(){
-        signOut()
-      }
+    showLogout()
+    document.getElementById("signOut").onclick = function(){
+    signOut()
+    }
 });
