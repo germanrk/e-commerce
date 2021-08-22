@@ -48,24 +48,20 @@ function cerrar_alertas(alerta, tiempo){
 }
 
 function validationLogin(){
-    let user = document.getElementById("email-login").value;
+    let email = document.getElementById("email-login").value;
     let pass = document.getElementById("password-login").value;
 
-    if((user ===``) && (pass ===``)){
-      cerrar_alertas("#alert-user-pass", 2000);
-      // verificationStatus("alert-email-pass")
-    }else if(user ===``){
-      // verificationStatus("alert-email")
-      cerrar_alertas("#alert-user", 2000);
+    if((email ===``) && (pass ===``)){
+      cerrar_alertas("#alert-email-pass", 2000);
+    }else if(email ===``){
+      cerrar_alertas("#alert-email", 2000);
     }else if(pass === ``){
-      // verificationStatus("alert-pass")
       cerrar_alertas("#alert-pass", 2000);
     }
 
     if((email === `user`) && (pass === `user`)){
         window.location.href="./inicio.html"
       }else{(email != `user`) && (pass != `user`)
-        // $("#alert-help").show()
         verificationStatus("alert-help")
       }
   }
