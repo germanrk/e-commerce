@@ -1,4 +1,4 @@
-function showCategoriesList(array){
+function showProductList(array){
     let htmlContentToAppend = "";
     for(let i = 0; i < array.length; i++){
         let product = array[i];
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             list_products = resultObj.data;
-            showCategoriesList(list_products);
+            showProductList(list_products);
         }
     });
 });
