@@ -3,6 +3,10 @@ let nameUser = ``;
 let imgUser = ``;
 let emailUser = ``;
 let idTokenUser =``;
+let dataTime = new Date();
+let fullTime = dataTime.getDate() + "/" + (dataTime.getMonth()+1) + "/" + dataTime.getFullYear() + " | " + dataTime.getHours()+ ":" +dataTime.getMinutes();
+
+
 // 
 // 
 //inicio de sesion con google
@@ -20,6 +24,7 @@ function onSignIn(googleUser) {
     localStorage.setItem('name',''+ nameUser +'');
     localStorage.setItem('img',''+ imgUser +'');
     localStorage.setItem('token',''+ idTokenUser +'');
+    sessionStorage.setItem("last_connection", fullTime)
 }
 // 
 // 
@@ -64,8 +69,6 @@ function validationLogin(){
     }
 
     if((email === `user`) && (pass === `user`)){
-      let dataTime = new Date();
-      let fullTime = dataTime.getDate() + "/" + (dataTime.getMonth()+1) + "/" + dataTime.getFullYear() + " | " + dataTime.getHours()+ ":" +dataTime.getMinutes();
         sessionStorage.setItem("userLog", email)
         sessionStorage.setItem("prueba", "este es una prueba")
         sessionStorage.setItem("last_connection", fullTime)
