@@ -28,21 +28,40 @@
 
     <div class="container">
       <div class="text-center p-4">
-        <h2>Productos</h2>
+        <h2><strong>Productos</strong></h2>
         <p class="lead">Verás aquí todas las Productos del sitio.</p>
     </div>
     <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-md-4 d-flex mb-3">
+          <input class="form-control mr-2" id="search_product" type="search" placeholder="Buscar Producto" aria-label="Search">
+        </div>
+      </div>
         <div class="row">
             <div class="col text-right">
                 <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
                     <label class="btn btn-light active" id="sortAsc" >
-                        <input type="radio" name="options" autocomplete="off" checked>A-Z
+                      <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-sort-alpha-down"></i>
                     </label>
+                    
                     <label class="btn btn-light" id="sortDesc" >
-                        <input type="radio" name="options" autocomplete="off">Z-A
+                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-alpha-up"></i>
                     </label>
-                    <label class="btn btn-light" id="sortByCount" >
-                        <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Cant.
+
+                    <label class="btn btn-light" id="sortByCountUp" >
+                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Costo.
+                    </label>
+                    
+                    <label class="btn btn-light" id="sortByCountDown" >
+                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up mr-1"></i>Costo.
+                    </label>
+
+                    <label class="btn btn-light" id="sortByRelUp" >
+                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Relevancia.
+                    </label>
+                  
+                    <label class="btn btn-light" id="sortByRelDown" >
+                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up mr-1"></i>Relevancia.
                     </label>
                 </div>
             </div>
@@ -52,7 +71,7 @@
             <div class="col-md-6 col-sm-12 mb-1 container">
               <div class="row container p-0 m-0">
                 <div class="col">
-                  <p class="font-weight-normal text-right my-2">Cant.</p>
+                  <p class="font-weight-normal text-right my-2">Precio:</p>
                 </div>
                 <div class="col">
                   <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">

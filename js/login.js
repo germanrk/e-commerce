@@ -33,6 +33,7 @@ function verificationStatus(id){
     $("#"+id+"").fadeOut();
   }
 }
+
 // 
 // 
 // show de alert error de login
@@ -40,7 +41,7 @@ function verificationStatus(id){
 // 
 
 function cerrar_alertas(alerta, tiempo){
-  window.setTimeout(function() {
+  window.setTimeout(function(){
       $(alerta).fadeTo(500, 0).slideUp(500, function(){
           $(this).remove(); 
       });
@@ -53,32 +54,41 @@ function validationLogin(){
 
     if((email ===``) && (pass ===``)){
       cerrar_alertas("#alert-email-pass", 2000);
+      // verificationStatus("alert-email-pass")
     }else if(email ===``){
+      // verificationStatus("alert-email")
       cerrar_alertas("#alert-email", 2000);
     }else if(pass === ``){
+      // verificationStatus("alert-pass")
       cerrar_alertas("#alert-pass", 2000);
     }
 
     if((email === `user`) && (pass === `user`)){
+      let dataTime = new Date();
+      let fullTime = dataTime.getDate() + "/" + (dataTime.getMonth()+1) + "/" + dataTime.getFullYear() + " | " + dataTime.getHours()+ ":" +dataTime.getMinutes();
+        sessionStorage.setItem("userLog", email)
+        sessionStorage.setItem("prueba", "este es una prueba")
+        sessionStorage.setItem("last_connection", fullTime)
         window.location.href="./inicio.html"
+
       }else{(email != `user`) && (pass != `user`)
+        // $("#alert-help").show()
         verificationStatus("alert-help")
       }
   }
 
-  $("#password-login").keyup(function (event) {
-
-    if (event.keyCode == 13) {
-        $("#btn-login").click();
-    }
+$("#password-login").keyup(function (event) {
+  if (event.keyCode == 13) {
+    $("#btn-login").click();
+  }
 });
-  $("#email-login").keyup(function (event) {
 
-    if (event.keyCode == 13) {
-        $("#btn-login").click();
-    }
+$("#email-login").keyup(function (event) {
+  if (event.keyCode == 13) {
+    $("#btn-login").click();
+  }
 });
 
 document.getElementById("btn-login").onclick=function(){
-    validationLogin();
+  validationLogin();
 }

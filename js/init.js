@@ -8,6 +8,28 @@ const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 let appendNav = ``;
 
+// 
+// 
+// Variables para listar 
+// 
+// 
+
+const ORDER_ASC_BY_NAME = "AZ";
+const ORDER_DESC_BY_NAME = "ZA";
+const ORDER_BY_PROD_COUNT_Down = "CantDown";
+const ORDER_BY_PROD_COUNT_UP = "CantUp";
+const ORDER_BY_PROD_REL_UP = "RelUp";
+const ORDER_BY_PROD_REL_Down = "RelDown";
+var currentCategoriesArray = [];
+var currentProductArray = [];
+var currentSortCriteria = undefined;
+var minCount = undefined;
+var maxCount = undefined;
+// 
+// Se creean los spinner 
+// 
+// 
+
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }
@@ -15,34 +37,44 @@ var showSpinner = function(){
 var hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
 }
+
+// 
+// 
+// Se se hace el login de Oauth Google
+// 
+// 
+
 let getName = localStorage.getItem('name');
 let getImg = localStorage.getItem('img');
 let getToken = localStorage.getItem('token');
+let last_connection = sessionStorage.getItem("last_connection");
+
 
 var getJSONData = function(url){
-    var result = {};
-    showSpinner();
-    return fetch(url)
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }else{
-        throw Error(response.statusText);
-      }
-    })
-    .then(function(response) {
-          result.status = 'ok';
-          result.data = response;
-          hideSpinner();
-          return result;
-    })
-    .catch(function(error) {
-        result.status = 'error';
-        result.data = error;
+  var result = {};
+  showSpinner();
+  return fetch(url)
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }else{
+      throw Error(response.statusText);
+    }
+  })
+  .then(function(response) {
+        result.status = 'ok';
+        result.data = response;
         hideSpinner();
         return result;
-    });
+  })
+  .catch(function(error) {
+      result.status = 'error';
+      result.data = error;
+      hideSpinner();
+      return result;
+  });
 }
+
 function showLogout(){
   if(getName){
     appendNav += `
@@ -51,6 +83,7 @@ function showLogout(){
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+getName+`</a>
+        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+last_connection+`</a>
         <a class="dropdown-item" href="./index.html">Cerrar Sesion</a>
       </div>
     `
@@ -60,26 +93,31 @@ function showLogout(){
         <img class="imgPerfil" src="https://www.prensalibre.com/wp-content/uploads/2019/05/1467646262_522853_1467646344_noticia_normal.jpg?quality=82&w=664">
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">User</a>
+        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ sessionStorage.getItem("userLog") +`</a>
+        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión ` +last_connection+ `</a>
         <a class="dropdown-item" href="./index.html">Cerrar Sesion</a>
       </div>
     `
   }
   document.getElementById("logout").innerHTML = appendNav;
 }
-    function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        showElement(btn-intro);
-        showElement(login-google);
-      });
-    }
+function signOut() {
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    showElement(btn-intro);
+    showElement(login-google);
+    });
+}
+
     //Función que se ejecuta una vez que se haya lanzado el evento de
     //que el documento se encuentra cargado, es decir, se encuentran todos los
     //elementos HTML presentes.
     document.addEventListener("DOMContentLoaded", function(e){
-    showLogout()
-    document.getElementById("signOut").onclick = function(){
-    signOut()
+    if(document.getElementById("logout")){
+      showLogout()
+    }
+    if(document.getElementById("signOut"))
+      document.getElementById("signOut").onclick = function(){
+      signOut()
     }
 });
