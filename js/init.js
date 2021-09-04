@@ -84,7 +84,7 @@ function showLogout(){
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+getName+`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+last_connection+`</a>
-        <a class="dropdown-item" href="./index.html">Cerrar Sesion</a>
+        <a class="dropdown-item" id="exit" href="./index.html">Cerrar Sesion</a>
       </div>
     `
   }else{
@@ -98,7 +98,7 @@ function showLogout(){
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ sessionStorage.getItem("name") +`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión ` +last_connection+ `</a>
-        <a class="dropdown-item" href="./index.html">Cerrar Sesion</a>
+        <a class="dropdown-item" id="exit" href="./index.html">Cerrar Sesion</a>
       </div>
     `
   }
@@ -150,8 +150,12 @@ return [month, day, year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
     }
     if(document.getElementById("signOut"))
       document.getElementById("signOut").onclick = function(){
-      localStorage.clear()
-      sessionStorage.clear()
       signOut()
+    }
+    if(document.getElementById("exit")){
+      document.getElementById("exit").onclick = function(){
+        localStorage.clear()
+        sessionStorage.clear()
+      }
     }
 });
