@@ -3,9 +3,6 @@ let nameUser = ``;
 let imgUser = ``;
 let emailUser = ``;
 let idTokenUser =``;
-let dataTime = new Date();
-let fullTime = dataTime.getDate() + "/" + (dataTime.getMonth()+1) + "/" + dataTime.getFullYear() + " | " + dataTime.getHours()+ ":" +dataTime.getMinutes();
-
 
 // 
 // 
@@ -21,10 +18,10 @@ function onSignIn(googleUser) {
     imgUser = profile.getImageUrl();
     emailUser = profile.getEmail();
     window.location.href="./inicio.html";
-    localStorage.setItem('name',''+ nameUser +'');
-    localStorage.setItem('img',''+ imgUser +'');
-    localStorage.setItem('token',''+ idTokenUser +'');
-    sessionStorage.setItem("last_connection", fullTime)
+    sessionStorage.setItem('name',''+ nameUser +'');
+    sessionStorage.setItem('img',''+ imgUser +'');
+    sessionStorage.setItem('token',''+ idTokenUser +'');
+    sessionStorage.setItem("last_connection", dataTime())
 }
 // 
 // 
@@ -69,9 +66,9 @@ function validationLogin(){
     }
 
     if((email === `user`) && (pass === `user`)){
-        sessionStorage.setItem("userLog", email)
+        sessionStorage.setItem('name', email);
         sessionStorage.setItem("prueba", "este es una prueba")
-        sessionStorage.setItem("last_connection", fullTime)
+        sessionStorage.setItem("last_connection", formatDateTime(dateTime()))
         window.location.href="./inicio.html"
 
       }else{(email != `user`) && (pass != `user`)

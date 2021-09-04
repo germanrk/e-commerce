@@ -147,6 +147,9 @@ a.custom-card:hover {
  width: 45px;
  height: 30px; 
 }
-.fa-star{
+.checked{
   color:rgb(234, 190, 63)
+}
+#starNotChecked{
+  color: #747b80;
 }

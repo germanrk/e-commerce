@@ -17,10 +17,12 @@ function showImagesGallery(array){
 }
 
 
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+    document.getElementById("newComment").value = ``;
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
@@ -41,10 +43,13 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
+    let totalComments = 0;
+
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObjet){
         if(resultObjet.status === "ok"){
             comment = resultObjet.data;
 
+            totalComments = comment.length;
             let htmlContentToAppend = "";
             let countComents = `
             Comentarios (` + comment.length + `)
@@ -66,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                         </div>
                     </div>
                     <div>
-                        <spam class="text-muted align-items-center"> Fecha del comentario: ` + comments.dateTime + `</spam>
+                        <spam class="text-muted align-items-center"> Fecha del comentario: ` + formatDateTime(comments.dateTime) + `</spam>
                     </div>
                 </div>               
                 `
@@ -75,11 +80,51 @@ document.addEventListener("DOMContentLoaded", function(e){
                 let stars = ``;
                 for(let s = 0; s < parseInt(comments.score); s++){
                     stars +=`
-                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star checked"></i>
                     `
                 };
+                
+                for(let i = parseInt(comments.score); i < 5 ; i++){
+                    stars +=`
+                    <i class="far fa-star" id="starNotChecked"></i>
+                    `
+                };
+        
+
                 document.getElementById("qualification" + i).innerHTML += stars
             }
         }
     })
+
+    document.getElementById("cancelComment").addEventListener("click", function(){
+        document.getElementById("newComment").value = ``;
+    })
+
+    document.getElementById("toPost").addEventListener("click", function(){
+        let comment = document.getElementById("newComment").value
+
+        htmlContentToAppend = `
+        <div class="card p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="user d-flex flex-row align-items-center"> <img src=` + sessionStorage.getItem("img") + ` width="30" class="user-img rounded-circle mr-2"> 
+                <span><small class="font-weight-bold text-primary">` + sessionStorage.getItem("name") + `:</small> 
+                    <small class="font-weight-bold">` + comment + `</small></span> 
+                </div>
+            </div>
+            <div class="action d-flex mt-2 align-items-center">
+                <div class="icons align-items-center"><small id="qualification">Calificacion: </small>
+                </div>
+            </div>
+            <div>
+                <spam class="text-muted align-items-center"> Fecha del comentario: ` + formatDateTime(dateTime()) + `</spam>
+            </div>
+        </div>               
+        `
+        totalComments++
+        document.getElementById("cardAdd").innerHTML += htmlContentToAppend;
+        document.getElementById("countComments").innerHTML = `Comentarios (` + totalComments + `)`
+        document.getElementById("newComment").value = ``;
+    })
+    
+    document.getElementById("commentsImg").src=sessionStorage.getItem("img");
 });

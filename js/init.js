@@ -28,7 +28,7 @@ var maxCount = undefined;
 // 
 // Se creean los spinner 
 // 
-// 
+// 6
 
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -88,12 +88,15 @@ function showLogout(){
       </div>
     `
   }else{
+    sessionStorage.removeItem(`img`)
+    sessionStorage.setItem(`img`, `https://www.prensalibre.com/wp-content/uploads/2019/05/1467646262_522853_1467646344_noticia_normal.jpg?quality=82&w=664`)
+
     appendNav += `
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="imgPerfil" src="https://www.prensalibre.com/wp-content/uploads/2019/05/1467646262_522853_1467646344_noticia_normal.jpg?quality=82&w=664">
+        <img class="imgPerfil" src="`+ sessionStorage.getItem("img") +`">
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ sessionStorage.getItem("userLog") +`</a>
+        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ sessionStorage.getItem("name") +`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión ` +last_connection+ `</a>
         <a class="dropdown-item" href="./index.html">Cerrar Sesion</a>
       </div>
@@ -109,6 +112,35 @@ function signOut() {
     });
 }
 
+function dateTime(){
+  let dataTime = new Date();
+  let fullTime = dataTime.getDate() + "-" + (dataTime.getMonth()+1) + "-" + dataTime.getFullYear() + "  " + dataTime.getHours()+ ":" +dataTime.getMinutes()+ ":"+ dataTime.getSeconds();
+  
+  return fullTime
+}
+
+function formatDateTime(date){
+  var d = new Date(date),
+  month = `` + (d.getMonth() + 1),
+  day = `` + d.getDate(),
+  year = `` + d.getFullYear();
+  hours = `` + d.getHours();
+  minutes = `` + d.getMinutes();
+
+if (month.length < 2) 
+  month = '0' + month;
+if (day.length < 2) 
+  day = '0' + day;
+if (hours.length < 2) 
+  hours = '0' + hours;
+if (minutes.length < 2) 
+  minutes = '0' + minutes;
+
+return [month, day, year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
+}
+
+
+
     //Función que se ejecuta una vez que se haya lanzado el evento de
     //que el documento se encuentra cargado, es decir, se encuentran todos los
     //elementos HTML presentes.
@@ -118,6 +150,8 @@ function signOut() {
     }
     if(document.getElementById("signOut"))
       document.getElementById("signOut").onclick = function(){
+      localStorage.clear()
+      sessionStorage.clear()
       signOut()
     }
 });

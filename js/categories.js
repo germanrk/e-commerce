@@ -53,6 +53,15 @@ function sortCategories(criteria, array){
             if ( aCount < bCount ){ return 1; }
             return 0;
         });
+    }else if (criteria === ORDER_BY_PROD_COUNT_Down){
+        result = array.sort(function(a, b) {
+            let aCount = parseInt(a.productCount);
+            let bCount = parseInt(b.productCount);
+  
+            if ( aCount < bCount ){ return -1; }
+            if ( aCount > bCount ){ return 1; }
+            return 0;
+        });
     }
   
     return result;
@@ -92,6 +101,11 @@ document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("sortByCountUp").addEventListener("click", function(){
         sortAndShowCategories(ORDER_BY_PROD_COUNT_UP);
     });
+
+    document.getElementById("sortByCountDown").addEventListener("click", function(){
+        sortAndShowCategories(ORDER_BY_PROD_COUNT_Down);
+    });
+
 
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
         document.getElementById("rangeFilterCountMin").value = "";
