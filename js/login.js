@@ -21,7 +21,8 @@ function onSignIn(googleUser) {
     sessionStorage.setItem('img',''+ imgUser +'');
     sessionStorage.setItem('token',''+ idTokenUser +'');
     sessionStorage.setItem("last_connection", formatDateTime(dateTime()))
-
+    verificationStatus("login-google");
+    verificationStatus("logout-google");
     document.getElementById("googleIntro").innerHTML = `
       <button id="btn-login-google" type="button" name="button" class="btn btn-dark w-100" >
         Entrar
@@ -29,18 +30,7 @@ function onSignIn(googleUser) {
   `
 
 }
-// 
-// 
-// validacion a traves de un login nativo
-// 
-// 
-function verificationStatus(id){
-  if(($("#"+id+"").css("display") === "none")){
-    $("#"+id+"").slideDown();
-  }else if(($("#"+id+"").css("display") === "block")){
-    $("#"+id+"").fadeOut();
-  }
-}
+
 
 // 
 // 
@@ -101,5 +91,4 @@ document.getElementById("btn-login").onclick=function(){
 
 document.getElementById("googleIntro").onclick=function(){
   window.location.href="./inicio.html";
-
 }

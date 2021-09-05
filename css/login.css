@@ -73,7 +73,7 @@
 }
 
 #login-container #forgot-password a {
-  color: #cccccc;
+  color: #252222;
 }
 
 div.error {
@@ -113,5 +113,8 @@ input.error {
   display: none;
 }
 #alert-help{
+  display: none;
+}
+#logout-google{
   display: none;
 }

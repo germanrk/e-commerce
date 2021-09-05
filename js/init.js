@@ -75,6 +75,14 @@ var getJSONData = function(url){
   });
 }
 
+function verificationStatus(id){
+  if(($("#"+id+"").css("display") === "none")){
+    $("#"+id+"").slideDown();
+  }else if(($("#"+id+"").css("display") === "block")){
+    $("#"+id+"").fadeOut();
+  }
+}
+
 function showLogout(){
   if(getName){
     appendNav += `
@@ -107,6 +115,8 @@ function showLogout(){
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
+    verificationStatus("logout-google");
+    verificationStatus("login-google");
   });
 }
 
@@ -163,7 +173,6 @@ return [month, day, year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
         localStorage.clear()
         sessionStorage.clear()
         window.location.href ="./index.html"
-        signOut()
       }
     }
 
