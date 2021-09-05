@@ -117,6 +117,8 @@ function signOut() {
   auth2.signOut().then(function () {
     verificationStatus("logout-google");
     verificationStatus("login-google");
+    localStorage.clear()
+    sessionStorage.clear()
   });
 }
 
@@ -170,8 +172,6 @@ return [month, day, year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
 
     if(document.getElementById("exitGoogle")){
       document.getElementById("exitGoogle").onclick = function(){
-        localStorage.clear()
-        sessionStorage.clear()
         window.location.href ="./index.html"
       }
     }
