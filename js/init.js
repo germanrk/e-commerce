@@ -44,7 +44,7 @@ var hideSpinner = function(){
 // 
 // 
 
-let getName = sessionStorage.getItem('name');
+let getName = sessionStorage.getItem('nameG');
 let getImg = sessionStorage.getItem('img');
 let getToken = sessionStorage.getItem('token');
 let last_connection = sessionStorage.getItem("last_connection");
@@ -108,7 +108,7 @@ function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     window.location.href ="./index.html"
-    });
+  });
 }
 
 function onLoad() {

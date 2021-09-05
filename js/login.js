@@ -17,11 +17,16 @@ function onSignIn(googleUser) {
     nameUser = profile.getName();
     imgUser = profile.getImageUrl();
     emailUser = profile.getEmail();
-    window.location.href="./inicio.html";
-    sessionStorage.setItem('name',''+ nameUser +'');
+    sessionStorage.setItem('nameG',''+ nameUser +'');
     sessionStorage.setItem('img',''+ imgUser +'');
     sessionStorage.setItem('token',''+ idTokenUser +'');
     sessionStorage.setItem("last_connection", formatDateTime(dateTime()))
+
+    document.getElementById("googleIntro").innerHTML = `
+      <button id="btn-login-google" type="button" name="button" class="btn btn-dark w-100" >
+        Entrar
+      </button>
+  `
 
 }
 // 
@@ -92,4 +97,9 @@ $("#email-login").keyup(function (event) {
 
 document.getElementById("btn-login").onclick=function(){
   validationLogin();
+}
+
+document.getElementById("btn-login-google").onclick=function(){
+  window.location.href="./inicio.html";
+
 }
