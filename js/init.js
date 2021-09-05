@@ -84,7 +84,7 @@ function showLogout(){
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+getName+`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+last_connection+`</a>
-        <a class="dropdown-item" id="exit" href="./index.html">Cerrar Sesion</a>
+        <a class="dropdown-item" id="exit" href="#">Cerrar Sesion</a>
       </div>
     `
   }else{
