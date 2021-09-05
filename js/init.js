@@ -107,7 +107,6 @@ function showLogout(){
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
-    window.location.href ="./index.html"
   });
 }
 
@@ -163,6 +162,7 @@ return [month, day, year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
       document.getElementById("exitGoogle").onclick = function(){
         localStorage.clear()
         sessionStorage.clear()
+        window.location.href ="./index.html"
         signOut()
       }
     }
