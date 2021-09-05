@@ -155,6 +155,7 @@ return [month, day, year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
     if(document.getElementById("exit"))
       document.getElementById("exit").onclick = function(){
       signOut()
+      GoogleAuth.disconnect();
     }
     // if(document.getElementById("exit")){
     //   document.getElementById("exit").onclick = function(){
