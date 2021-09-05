@@ -99,7 +99,7 @@ document.getElementById("btn-login").onclick=function(){
   validationLogin();
 }
 
-document.getElementById("btn-login-google").onclick=function(){
+document.getElementById("googleIntro").onclick=function(){
   window.location.href="./inicio.html";
 
 }
