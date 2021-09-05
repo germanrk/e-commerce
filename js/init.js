@@ -84,7 +84,7 @@ function showLogout(){
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+getName+`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+last_connection+`</a>
-        <a class="dropdown-item" id="exit" href="#">Cerrar Sesion</a>
+        <a class="dropdown-item" id="exitGoogle" href="#"> Cerrar Sesion</a>
       </div>
     `
   }else{
@@ -98,7 +98,7 @@ function showLogout(){
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ sessionStorage.getItem("name") +`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión ` +last_connection+ `</a>
-        <a class="dropdown-item" href="./index.html">Cerrar Sesion</a>
+        <a class="dropdown-item" id"exit" href="./index.html">Cerrar Sesion</a>
       </div>
     `
   }
@@ -107,13 +107,14 @@ function showLogout(){
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
-    showElement(btn-intro);
-    showElement(login-google);
+    window.location.href ="./index.html"
     });
 }
 
-var logoutGoogle = function() {
-  document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://germanrk.github.io/e-commerce/index.html";
+function onLoad() {
+  gapi.load('auth2', function() {
+    gapi.auth2.init();
+  });
 }
 
 function dateTime(){
@@ -152,16 +153,24 @@ return [month, day, year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
     if(document.getElementById("logout")){
       showLogout()
     }
-    if(document.getElementById("exit"))
-      document.getElementById("exit").onclick = function(){
-      signOut()
-      GoogleAuth.disconnect();
-    }
-    // if(document.getElementById("exit")){
+    // if(document.getElementById("exit"))
     //   document.getElementById("exit").onclick = function(){
-        // localStorage.clear()
-        // sessionStorage.clear()
-    //     logoutGoogle();
-    //   }
+    //   signOut()
+    //   GoogleAuth.disconnect();
     // }
+
+    if(document.getElementById("exitGoogle")){
+      document.getElementById("exitGoogle").onclick = function(){
+        localStorage.clear()
+        sessionStorage.clear()
+        signOut()
+      }
+    }
+
+    if(document.getElementById("exit")){
+      document.getElementById("exit").onclick = function(){
+        localStorage.clear()
+        sessionStorage.clear()
+      }
+    }
 });
