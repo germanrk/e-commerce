@@ -44,9 +44,9 @@ var hideSpinner = function(){
 // 
 // 
 
-let getName = localStorage.getItem('name');
-let getImg = localStorage.getItem('img');
-let getToken = localStorage.getItem('token');
+let getName = sessionStorage.getItem('name');
+let getImg = sessionStorage.getItem('img');
+let getToken = sessionStorage.getItem('token');
 let last_connection = sessionStorage.getItem("last_connection");
 
 
