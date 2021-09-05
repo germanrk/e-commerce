@@ -98,7 +98,7 @@ function showLogout(){
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ sessionStorage.getItem("name") +`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión ` +last_connection+ `</a>
-        <a class="dropdown-item" id="exit" href="./index.html">Cerrar Sesion</a>
+        <a class="dropdown-item" href="./index.html">Cerrar Sesion</a>
       </div>
     `
   }
@@ -110,6 +110,10 @@ function signOut() {
     showElement(btn-intro);
     showElement(login-google);
     });
+}
+
+var logoutGoogle = function() {
+  document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://germanrk.github.io/e-commerce/index.html";
 }
 
 function dateTime(){
@@ -148,14 +152,15 @@ return [month, day, year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
     if(document.getElementById("logout")){
       showLogout()
     }
-    if(document.getElementById("signOut"))
+    if(document.getElementById("exit"))
       document.getElementById("signOut").onclick = function(){
       signOut()
     }
-    if(document.getElementById("exit")){
-      document.getElementById("exit").onclick = function(){
-        localStorage.clear()
-        sessionStorage.clear()
-      }
-    }
+    // if(document.getElementById("exit")){
+    //   document.getElementById("exit").onclick = function(){
+        // localStorage.clear()
+        // sessionStorage.clear()
+    //     logoutGoogle();
+    //   }
+    // }
 });
