@@ -153,7 +153,7 @@ return [month, day, year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
       showLogout()
     }
     if(document.getElementById("exit"))
-      document.getElementById("signOut").onclick = function(){
+      document.getElementById("exit").onclick = function(){
       signOut()
     }
     // if(document.getElementById("exit")){
