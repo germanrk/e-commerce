@@ -21,7 +21,8 @@ function onSignIn(googleUser) {
     sessionStorage.setItem('name',''+ nameUser +'');
     sessionStorage.setItem('img',''+ imgUser +'');
     sessionStorage.setItem('token',''+ idTokenUser +'');
-    sessionStorage.setItem("last_connection", dateTime())
+    sessionStorage.setItem("last_connection", formatDateTime(dateTime()))
+
 }
 // 
 // 
