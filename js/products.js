@@ -186,6 +186,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             sortAndShowProduct(ORDER_ASC_BY_NAME, list_products);
         }
     });
+    
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowProduct(ORDER_ASC_BY_NAME);
     });
@@ -197,12 +198,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("sortByCountUp").addEventListener("click", function(){
         sortAndShowProduct(ORDER_BY_PROD_COUNT_UP);
     });
+
     document.getElementById("sortByCountDown").addEventListener("click", function(){
         sortAndShowProduct(ORDER_BY_PROD_COUNT_Down);
     });
+
     document.getElementById("sortByRelUp").addEventListener("click", function(){
         sortAndShowProduct(ORDER_BY_PROD_REL_UP);
     });
+
     document.getElementById("sortByRelDown").addEventListener("click", function(){
         sortAndShowProduct(ORDER_BY_PROD_REL_Down);
     });

@@ -11,9 +11,10 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="stars.css">
+  <link rel="stylesheet" href="css/stars.css">
 </head>
 
 <body>
@@ -85,6 +86,26 @@
                     <img class="rounded-circle" id="commentsImg" src="#" width="40">
                     <textarea class="form-control ml-1 shadow-none textarea" id="newComment">
                     </textarea>
+                  </div>
+                  <div class="container d-flex justify-content-left mt-100">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="stars">
+                                <form action=""> 
+                                <input class="star star-5" id="star-5" type="radio" autocomplete="off" name="star" /> 
+                                <label class="star star-5" for="star-5"></label> 
+                                <input class="star star-4" id="star-4" type="radio" autocomplete="off" name="star" /> 
+                                <label class="star star-4" for="star-4"></label> 
+                                <input class="star star-3" id="star-3" type="radio" autocomplete="off" name="star" checked /> 
+                                <label class="star star-3" for="star-3"></label> 
+                                <input class="star star-2" id="star-2" type="radio" autocomplete="off" name="star" /> 
+                                <label class="star star-2" for="star-2"></label> 
+                                <input class="star star-1" id="star-1" type="radio" autocomplete="off" name="star" /> 
+                                <label class="star star-1" for="star-1"></label> 
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                   </div>
                   <div class="mt-2 text-right">
                     <button class="btn btn-primary btn-sm shadow-none" id="toPost" type="button">Publicar</button>

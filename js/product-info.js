@@ -18,6 +18,7 @@ function showImagesGallery(array){
 
 
 
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -100,6 +101,41 @@ document.addEventListener("DOMContentLoaded", function(e){
         document.getElementById("newComment").value = ``;
     })
 
+    let countStars = 3;
+
+    document.getElementById("star-5").addEventListener("click", function(){
+        countStars = 5;
+    });
+
+    document.getElementById("star-4").addEventListener("click", function(){
+        countStars = 4;
+    });
+
+    document.getElementById("star-3").addEventListener("click", function(){
+        countStars = 3;
+    });
+
+    document.getElementById("star-2").addEventListener("click", function(){
+        countStars = 2;
+    });
+
+    document.getElementById("star-1").addEventListener("click", function(){
+        countStars = 1;
+    });
+
+    let addCountStars = ``;
+
+    function addStars(count){
+        addCountStars = ``;
+        for (let i = 0; i < count; i++) {
+            addCountStars += `<i class="fas fa-star checked"></i>`
+        }
+        for (let i = count; i < 5; i++) {
+            addCountStars += `<i class="far fa-star" id="starNotChecked"></i>`
+        }
+        return addCountStars;
+    }
+
     document.getElementById("toPost").addEventListener("click", function(){
         let comment = document.getElementById("newComment").value
 
@@ -112,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                 </div>
             </div>
             <div class="action d-flex mt-2 align-items-center">
-                <div class="icons align-items-center"><small id="qualification">Calificacion: </small>
+                <div class="icons align-items-center"><small id="qualification">Calificacion:` + addStars(countStars)+ `</small>
                 </div>
             </div>
             <div>
