@@ -160,6 +160,8 @@ document.addEventListener("DOMContentLoaded", function(e){
         document.getElementById("cardAdd").innerHTML += htmlContentToAppend;
         document.getElementById("countComments").innerHTML = `Comentarios (` + totalComments + `)`
         document.getElementById("newComment").value = ``;
+        // document.getElementById("star-3").attributes
+        $("#star-3").prop('checked', true);
     })
     
     document.getElementById("commentsImg").src=sessionStorage.getItem("img");
