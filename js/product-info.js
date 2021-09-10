@@ -1,18 +1,31 @@
 function showImagesGallery(array){
 
-    let htmlContentToAppend = "";
+    let htmlCountImg = "";
+    let htmladdImg =  ``;
 
     for(let i = 0; i < array.length; i++){
         let imageSrc = array[i];
-        htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>
-        `
+        console.log(array[0])
+        console.log(imageSrc)
+        if(imageSrc === array[0]){
+            console.log("hola")
+            htmlCountImg = `<li data-target="#carouselExampleIndicators" data-slide-to="` + i +`" class="active"></li>`
+            htmladdImg = `<div class="carousel-item active" > <img class="d-block w-100" src="`+ imageSrc +`" alt="First slide"></div>`
+        }else{
 
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+            htmlCountImg += `
+                <li data-target="#carouselExampleIndicators" data-slide-to="`+ i + `"></li>`         
+            
+            htmladdImg +=`
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="`+ imageSrc +`" alt="Second slide">
+                </div>
+                `
+        }
+
+
+        document.getElementById("countImgCarousel").innerHTML = htmlCountImg;
+        document.getElementById("addImgCarousel").innerHTML = htmladdImg;
     }
 }
 

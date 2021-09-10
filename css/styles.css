@@ -153,3 +153,7 @@ a.custom-card:hover {
 #starNotChecked{
   color: #747b80;
 }
+#carouselExampleIndicators{
+  width: 50%;
+  height: auto;
+}
