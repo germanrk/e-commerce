@@ -153,7 +153,18 @@ a.custom-card:hover {
 #starNotChecked{
   color: #747b80;
 }
-#carouselExampleIndicators{
-  width: 50%;
-  height: auto;
+#categoryName{
+  font-size: 45px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+#ProductCoust{
+  margin-left: 10px;
+  font-size:20px;
+  font-family:Arial, Helvetica, sans-serif;
+  color: rgb(194, 53, 48);
+}
+#productSold{
+  margin-left: 10px;
+  font-size:20px;
 }

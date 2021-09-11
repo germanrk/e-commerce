@@ -38,53 +38,53 @@
     </div> -->
   </div>
   <main role="main">
-    <div class="container mt-5">
-      <div class="text-center p-4">
-        <h2>Descripción de la categoría</h2>
-        <p class="lead">Encontrarás aquí toda la información de la categoría seleccionada.</p>
-        <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea la categoría
-          seleccionada previamente, siempre se visualizará la presente: <strong>Autos</strong>.</p>
+    <div class="container">
+      <div class="text-center">
+        <h2 id="categoryName"></h2>
+        <p class="lead mb-5">Encontrarás aquí toda la información del producto seleccionado.</p>
+        <!-- <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea la categoría
+          seleccionada previamente, siempre se visualizará la presente: <strong>Autos</strong>.</p> -->
       </div>
-      <h3 id="categoryName"></h3>
-      <hr class="my-3">
-      <dl>
-        <dt>Descripción</dt>
-        <dd>
-          <p id="productDescription"></p>
-        </dd>
-
-        <dt>Cantidad de productos en la categoría</dt>
-        <dd>
-          <p id="productCount"></p>
-        </dd>
-
-        <dt>Criterio para incluir productos en esta categoría</dt>
-        <dd>
-          <p id="productCriteria"></p>
-        </dd>
-
-        <dt>Imágenes ilustrativas</dt>
-        <dd class="d-flex justify-content-center">
-          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators" id="countImgCarousel">
-
-            </ol>
-
-            <div class="carousel-inner" id="addImgCarousel">
-
+      <div class="container-xxl">
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col-6">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators" id="countImgCarousel">
+                  </ol>
+                  <div class="carousel-inner" id="addImgCarousel">
+                  </div>
+                    
+                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+              <div class="col-5 ml-3">
+                <div class="row">
+                  <h4>Precio:</h4>
+                  <p id="ProductCoust"></p>
+                </div>
+                <div class="row">
+                  <h4>Cantidad de articulos vendidos:</h4>
+                  <p id="productSold" class="mb-4"></p>
+                </div>
+                <div class="row">
+                  <h4>Descripción:</h4>
+                  <p id="productDescription"></p>
+                </div>
+              </div>
             </div>
-              
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
           </div>
-        </dd>
-      </dl>
+        </div>
+      </div>
+      <hr class="my-3">
       <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
     </div>
     <div id="comments">

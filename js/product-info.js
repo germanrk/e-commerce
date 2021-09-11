@@ -8,7 +8,6 @@ function showImagesGallery(array){
         console.log(array[0])
         console.log(imageSrc)
         if(imageSrc === array[0]){
-            console.log("hola")
             htmlCountImg = `<li data-target="#carouselExampleIndicators" data-slide-to="` + i +`" class="active"></li>`
             htmladdImg = `<div class="carousel-item active" > <img class="d-block w-100" src="`+ imageSrc +`" alt="First slide"></div>`
         }else{
@@ -44,13 +43,14 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             let productsNameHTML  = document.getElementById("categoryName");
             let productsDescriptionHTML = document.getElementById("productDescription");
-            let productCountHTML = document.getElementById("productCount");
-            let productCriteriaHTML = document.getElementById("productCriteria");
-            
+            let productCoust = document.getElementById("ProductCoust");
+            let productSold = document.getElementById("productSold");
+
+            productSold.innerHTML = product.soldCount
+            productCoust.innerHTML = product.currency
+            productCoust.innerHTML += ` ` + product.cost
             productsNameHTML.innerHTML = product.name;
             productsDescriptionHTML.innerHTML = product.description;
-            productCountHTML.innerHTML = product.soldCount;
-            productCriteriaHTML.innerHTML = product.productCriteria;
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
@@ -112,6 +112,8 @@ document.addEventListener("DOMContentLoaded", function(e){
 
     document.getElementById("cancelComment").addEventListener("click", function(){
         document.getElementById("newComment").value = ``;
+        $("#star-3").prop('checked', true);
+
     })
 
     let countStars = 3;
