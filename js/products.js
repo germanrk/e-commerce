@@ -24,7 +24,7 @@ function showProductList(){
                     </div>
                     <div class="col-3">
                         <div class="d-flex justify-content-end">
-                            <p class="text-muted">`+ product.currency+ ` ` + product.cost  + `</p>
+                            <p class="text-muted">`+ product.currency+ ` ` +Intl.NumberFormat("de-DE").format(product.cost)  + `</p>
                             <p class="text-muted ml-2">|</p>
                             <p class="text-muted ml-2">`+ product.soldCount+ ` Vendidos</p>
                         </div>
@@ -111,18 +111,6 @@ function sortAndShowProduct(sortCriteria, productArray){
 
 // 
 // 
-// Cambia primera letra del input search por mayusculas
-// 
-// 
-
-function toUpperWord(palabra){
-    let firstWord = palabra.charAt(0).toUpperCase();
-    firstWord = firstWord + palabra.slice(1);
-    return firstWord;
-}
-
-// 
-// 
 // Se actualiza la lista por el search
 // 
 // 
@@ -151,7 +139,7 @@ function searchFilter() {
                     </div>
                     <div class="col-3">
                         <div class="d-flex justify-content-end">
-                            <p class="text-muted">`+ product.currency+ ` ` + product.cost  + `</p>
+                            <p class="text-muted">`+ product.currency+ ` ` + Intl.NumberFormat("de-DE").format(product.cost)  + `</p>
                             <p class="text-muted ml-2">|</p>
                             <p class="text-muted ml-2">`+ product.soldCount+ ` Vendidos</p>
                         </div>

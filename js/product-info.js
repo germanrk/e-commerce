@@ -1,3 +1,5 @@
+let productRelevant = ``;
+
 function showImagesGallery(array){
 
     let htmlCountImg = "";
@@ -5,15 +7,15 @@ function showImagesGallery(array){
 
     for(let i = 0; i < array.length; i++){
         let imageSrc = array[i];
-        console.log(array[0])
-        console.log(imageSrc)
         if(imageSrc === array[0]){
-            htmlCountImg = `<li data-target="#carouselExampleIndicators" data-slide-to="` + i +`" class="active"></li>`
-            htmladdImg = `<div class="carousel-item active" > <img class="d-block w-100" src="`+ imageSrc +`" alt="First slide"></div>`
+            htmlCountImg = `<li data-target="#carouselThePicture" data-slide-to="` + i +`" class="active"></li>`
+            htmladdImg = `<div class="carousel-item active">
+                            <img class="d-block w-100" src="`+ imageSrc +`" alt="First slide">
+                        </div>`
         }else{
 
             htmlCountImg += `
-                <li data-target="#carouselExampleIndicators" data-slide-to="`+ i + `"></li>`         
+                <li data-target="#carouselThePicture" data-slide-to="`+ i + `"></li>`         
             
             htmladdImg +=`
                 <div class="carousel-item">
@@ -22,12 +24,65 @@ function showImagesGallery(array){
                 `
         }
 
-
         document.getElementById("countImgCarousel").innerHTML = htmlCountImg;
         document.getElementById("addImgCarousel").innerHTML = htmladdImg;
     }
 }
 
+function showRelated(array){
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok"){
+            product = resultObj.data;
+        }
+
+        let addHtml = ``;
+        let addButtom =``;
+        let countIf = 0;
+        for (let index = 0; index < array.length; index++) {
+            let productRel = array[index];
+
+            for (let i = 0; i < product.length; i++) {
+                let productshow = product[i];
+                
+                if(productRel === i){
+                    if(countIf === 0){
+
+                        addButtom += `
+                                <li data-target="#carouselRel" data-slide-to=`+ countIf +` class="active"></li>
+                                `
+                        addHtml += `
+                                <div class="carousel-item active">
+                                    <img src="`+ productshow.imgSrc +`" class="d-block w-100" alt="Imagen` +countIf + 1 +`">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>` + toUpperWord(productshow.name) + `</h5>
+                                        <spam>` + productshow.description + `</spam>
+                                        <spam>` + productshow.currency + ` ` + Intl.NumberFormat("de-DE").format(productshow.cost) + `</spam>
+                                    </div>
+                                </div>
+                                `
+                    }else{
+                        addButtom += `
+                            <li data-target="#carouselRel" data-slide-to="`+ countIf + `"></li>`         
+                        addHtml += `
+                            <div class="carousel-item">
+                                <img src="`+ productshow.imgSrc +`" class="d-block w-100" alt="Imagen` +countIf + 1 +`">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>` + toUpperWord(productshow.name) + `</h5>
+                                    <spam>` + productshow.description + `</spam>
+                                    <spam>` + productshow.currency + ` ` + Intl.NumberFormat("de-DE").format(productshow.cost) + `</spam>
+                                </div>
+                            </div>
+                            `
+                    }
+                    countIf++;
+                }
+            }
+        }
+
+        document.getElementById("buttonCarousel").innerHTML = addButtom;
+        document.getElementById("cardCarousel").innerHTML = addHtml;
+    });
+}
 
 
 
@@ -46,10 +101,12 @@ document.addEventListener("DOMContentLoaded", function(e){
             let productCoust = document.getElementById("ProductCoust");
             let productSold = document.getElementById("productSold");
 
+            showRelated(product.relatedProducts);
+            productRelevant = product.relatedProducts;
             productSold.innerHTML = product.soldCount
             productCoust.innerHTML = product.currency
-            productCoust.innerHTML += ` ` + product.cost
-            productsNameHTML.innerHTML = product.name;
+            productCoust.innerHTML += ` ` + Intl.NumberFormat("de-DE").format(product.cost)
+            productsNameHTML.innerHTML = toUpperWord(product.name);
             productsDescriptionHTML.innerHTML = product.description;
 
             //Muestro las imagenes en forma de galería
@@ -76,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                 <div class="card p-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="user d-flex flex-row align-items-center"> <img src="https://www.prensalibre.com/wp-content/uploads/2019/05/1467646262_522853_1467646344_noticia_normal.jpg?quality=82&w=664" width="30" class="user-img rounded-circle mr-2"> 
-                        <span><small class="font-weight-bold text-primary">` + comments.user + `:</small> 
+                        <span><small class="font-weight-bold text-primary">` + toUpperWord(comments.user) + `:</small> 
                             <small class="font-weight-bold">` + comments.description + `</small></span> 
                         </div>
                     </div>
@@ -158,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="user d-flex flex-row align-items-center"> <img src=` + sessionStorage.getItem("img") + ` width="30" class="user-img rounded-circle mr-2"> 
-                <span><small class="font-weight-bold text-primary">` + sessionStorage.getItem("name") + `:</small> 
+                <span><small class="font-weight-bold text-primary">` + toUpperWord(sessionStorage.getItem("name")) + `:</small> 
                     <small class="font-weight-bold">` + comment + `</small></span> 
                 </div>
             </div>
@@ -180,4 +237,8 @@ document.addEventListener("DOMContentLoaded", function(e){
     })
     
     document.getElementById("commentsImg").src=sessionStorage.getItem("img");
+
+    // function ProdtRelations(){
+
+    // }
 });

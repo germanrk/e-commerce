@@ -25,10 +25,13 @@ var currentProductArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
+
 // 
 // Se creean los spinner 
 // 
 // 6
+
+
 
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -36,6 +39,19 @@ var showSpinner = function(){
 
 var hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
+}
+
+
+// 
+// 
+// Cambia primera letra del input search por mayusculas
+// 
+// 
+
+function toUpperWord(palabra){
+  let firstWord = palabra.charAt(0).toUpperCase();
+  firstWord = firstWord + palabra.slice(1);
+  return firstWord;
 }
 
 // 
@@ -87,11 +103,13 @@ function showLogout(){
   if(getName){
     appendNav += `
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="imgPerfil" src="`+getImg+`">
+      `+toUpperWord(getName)+` <img class="imgPerfil ml-2" src="`+getImg+`">
       </a>
+      <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+toUpperWord(getName)+`</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+getName+`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+last_connection+`</a>
+        <a class="dropdown-item" href="../my-profile.html"> Mi perfil</a>
+        <a class="dropdown-item" href="../cart.html"> Ir al carrito</a>
         <a class="dropdown-item" id="exitGoogle" href="#"> Cerrar Sesion</a>
       </div>
     `
@@ -101,17 +119,20 @@ function showLogout(){
 
     appendNav += `
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="imgPerfil" src="`+ sessionStorage.getItem("img") +`">
+      `+ toUpperWord(sessionStorage.getItem("name")) +` <img class="imgPerfil ml-2" src="`+ sessionStorage.getItem("img") +`"> 
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ sessionStorage.getItem("name") +`</a>
+        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ toUpperWord(sessionStorage.getItem("name")) +`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión ` +last_connection+ `</a>
+        <a class="dropdown-item" href="../my-profile.html"> Mi perfil</a>
+        <a class="dropdown-item" href="../cart.html"> Ir al carrito</a>
         <a class="dropdown-item" id"exit" href="./index.html">Cerrar Sesion</a>
       </div>
     `
   }
   document.getElementById("logout").innerHTML = appendNav;
 }
+
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
@@ -130,9 +151,7 @@ function onLoad() {
 
 function dateTime(){
   let dataTime = new Date();
-  let fullTime = dataTime.getDate() + "-" + (dataTime.getMonth()+1) + "-" + dataTime.getFullYear() + "  " + dataTime.getHours()+ ":" +dataTime.getMinutes()+ ":"+ dataTime.getSeconds();
-  
-  return fullTime
+  return dataTime
 }
 
 function formatDateTime(date){
@@ -152,7 +171,7 @@ if (hours.length < 2)
 if (minutes.length < 2) 
   minutes = '0' + minutes;
 
-return [month, day, year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
+return [day, month , year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
 }
 
 

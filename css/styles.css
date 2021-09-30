@@ -168,3 +168,8 @@ a.custom-card:hover {
   margin-left: 10px;
   font-size:20px;
 }
+#relatedCars{
+  
+  width: 80%;
+  height: 100%;
+}

@@ -61,7 +61,7 @@ function validationLogin(){
       cerrar_alertas("#alert-pass", 2000);
     }
 
-    if((email === `user`) && (pass === `user`)){
+    if((email !=``) && (pass != ``)){
         sessionStorage.setItem('name', email);
         sessionStorage.setItem("prueba", "este es una prueba")
         sessionStorage.setItem("last_connection", formatDateTime(dateTime()))
