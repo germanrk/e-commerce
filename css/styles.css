@@ -54,6 +54,11 @@ footer p {
   margin-bottom: .25rem;
 }
 
+footer a{
+  text-decoration: none;
+  color: gray;
+}
+
 .site-header a {
   color: white;
   transition: ease-in-out color .15s;
@@ -172,4 +177,22 @@ a.custom-card:hover {
   
   width: 80%;
   height: 100%;
+}
+#imgCart{
+  width: 80px;
+  height: 55px;
+}
+.numbers{
+ 
+  font-family:'Times New Roman', Times, serif;
+}
+
+#direction input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+#direction input[type=number]::-webkit-inner-spin-button, 
+#direction input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
 }

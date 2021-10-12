@@ -6,6 +6,8 @@ const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678
 const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+const LIST_CHANGE = "http://data.fixer.io/api/latest?access_key=f6a00ddc26464ce6063f48a303a5bb55"
+let change = {};
 let appendNav = ``;
 
 // 
@@ -25,6 +27,30 @@ var currentProductArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
+
+// 
+// 
+// Cambio
+// 
+//
+
+function dolarUyu(listado){
+  let uyu = listado.UYU;
+  let usd = listado.USD;
+  let eur = listado.EUR;
+  return (eur / usd) * uyu;
+}
+
+function changer(price, money){
+  let total = 0;
+  if(money === `USD`){
+    total = price * dolarUyu(change);
+  }else if(money === `UYU`){
+    total = price / dolarUyu(change);
+  }
+  return total;
+}
+
 
 // 
 // Se creean los spinner 
@@ -60,10 +86,10 @@ function toUpperWord(palabra){
 // 
 // 
 
-let getName = sessionStorage.getItem('nameG');
-let getImg = sessionStorage.getItem('img');
-let getToken = sessionStorage.getItem('token');
-let last_connection = sessionStorage.getItem("last_connection");
+const getName = sessionStorage.getItem('nameG');
+const getImg = sessionStorage.getItem('img');
+const getToken = sessionStorage.getItem('token');
+const getLast_connection = sessionStorage.getItem("last_connection");
 
 
 var getJSONData = function(url){
@@ -92,20 +118,20 @@ var getJSONData = function(url){
 }
 
 function verificationStatus(id){
-  if(($("#"+id+"").css("display") === "none")){
-    $("#"+id+"").slideDown();
-  }else if(($("#"+id+"").css("display") === "block")){
-    $("#"+id+"").fadeOut();
+  if(($(`#${id}`).css("display") === "none")){
+    $(`#${id}`).slideDown();
+  }else if(($(`#${id}`).css("display") === "block")){
+    $(`#${id}`).fadeOut();
   }
 }
 
-function showLogout(){
-  if(getName){
+function showLogout(name, image, last_connection){
+  if(name){
     appendNav += `
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      `+toUpperWord(getName)+` <img class="imgPerfil ml-2" src="`+getImg+`">
+      `+toUpperWord(name)+` <img class="imgPerfil ml-2" src="`+image+`">
       </a>
-      <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+toUpperWord(getName)+`</a>
+      <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+toUpperWord(name)+`</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+last_connection+`</a>
         <a class="dropdown-item" href="../my-profile.html"> Mi perfil</a>
@@ -156,11 +182,11 @@ function dateTime(){
 
 function formatDateTime(date){
   var d = new Date(date),
-  month = `` + (d.getMonth() + 1),
-  day = `` + d.getDate(),
-  year = `` + d.getFullYear();
-  hours = `` + d.getHours();
-  minutes = `` + d.getMinutes();
+  month =  (d.getMonth() + 1).toString(),
+  day = d.getDate().toString(),
+  year = d.getFullYear().toString();
+  hours = d.getHours().toString();
+  minutes = d.getMinutes().toString();
 
 if (month.length < 2) 
   month = '0' + month;
@@ -174,29 +200,28 @@ if (minutes.length < 2)
 return [day, month , year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
 }
 
-
-
     //Función que se ejecuta una vez que se haya lanzado el evento de
     //que el documento se encuentra cargado, es decir, se encuentran todos los
     //elementos HTML presentes.
     document.addEventListener("DOMContentLoaded", function(e){
+    getJSONData(LIST_CHANGE).then(function(resultObj){
+      if(resultObj.status === "ok"){
+        change = resultObj.data.rates;
+      }
+    });
+
     if(document.getElementById("logout")){
-      showLogout()
+      showLogout(getName, getImg, getLast_connection)
     }
-    // if(document.getElementById("exit"))
-    //   document.getElementById("exit").onclick = function(){
-    //   signOut()
-    //   GoogleAuth.disconnect();
-    // }
 
     if(document.getElementById("exitGoogle")){
-      document.getElementById("exitGoogle").onclick = function(){
+      document.getElementById("exitGoogle").onclick = ()=>{
         window.location.href ="./index.html"
       }
     }
 
     if(document.getElementById("exit")){
-      document.getElementById("exit").onclick = function(){
+      document.getElementById("exit").onclick = ()=>{
         localStorage.clear()
         sessionStorage.clear()
       }

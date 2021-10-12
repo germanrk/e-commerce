@@ -10,7 +10,9 @@
   <title>eMercado - Todo lo que busques está aquí</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous"> -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   <style>
     .bd-placeholder-img {
@@ -27,13 +29,16 @@
         font-size: 3.5rem;
       }
     }
+    select{
+      height: 30px;
+    }
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="inicio.html">Inicio</a>
@@ -44,21 +49,189 @@
       </div>
     </div>
   </nav>
+
+  <div class="container mb-3">
+    <div class="text-center p-4">
+      <h2><strong>Carrito</strong></h2>
+      <p class="lead">Aqui se muestra los productos a comprar</p>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Información de los producto en el carrito</h4>
+          <div class="row fw-bolder">
+            <div class="col-2 p-0 d-flex justify-content-center">
+              <span>Imagen</span>
+            </div>
+            <div class="col-3 p-0 d-flex justify-content-center">
+              <span>Nombre</span>
+            </div>
+            <div class="col-2 p-0 d-flex justify-content-center">
+              <span>Costo</span>
+            </div>
+            <div class="col-1 p-0 d-flex justify-content-center">
+              <span>Cantidad</span>
+            </div>
+            <div class="col-3 p-0 d-flex justify-content-center">
+              <span>Subtotal</span>
+            </div>
+            <div class="col-1 p-0 d-flex justify-content-center">
+              <span>Eliminar</span>
+            </div>
+          </div>
+          <hr class="mb-4">
+
+          <div id="productCart">
+
+          </div>
+
+          <div class="container" style="height: 200px;">
+            <div class="row">
+              <div class="col-3 mr-5">
+                <h5 class="mb-3">Tipo de envio</h5>
+                <div id="envio" class="d-block my-3">
+                  <div class="custom-control custom-radio">
+                    <input id="goldradio" name="envioType" type="radio" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="goldradio">Gold (13%)</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input id="premiumradio" name="envioType" type="radio" class="custom-control-input">
+                    <label class="custom-control-label" for="premiumradio">Premium (7%)</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input id="standardradio" name="envioType" type="radio" class="custom-control-input">
+                    <label class="custom-control-label" for="standardradio">Estándar (3%)</label>
+                    <div class="row">
+                      <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver condiciones</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-8">
+                <h5 class="mb-3">Direccion de envio</h5>
+                <div id="direction">
+                  <form>
+                    <div class="form-row">
+                      <div class="form-group col-md-5">
+                        <label for="inputStreet">Calle</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="18 de julio">
+                      </div>
+                      <div class="form-group col-md-5">
+                        <label for="inputStreet2">Esquina</label>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="Ejido">
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="inputDoor">Puerta</label>
+                        <input type="number" class="form-control" id="inputDoor" placeholder="1999">
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-5">
+                        <label for="inputState">Departamento</label>
+                        <select id="inputState" class="form-control">
+                          <option selected>Montevideo</option>
+                          <option>...</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="inputCity">Ciudad</label>
+                        <input type="text" class="form-control" id="inputCity" placeholder="Montevideo">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputZip">Codigo postal</label>
+                        <input type="number" class="form-control" id="inputZip" placeholder="11100">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>              
+            </div>
+          </div>
+          <hr class="mb-4">
+          <h4 class="mb-3">Costos</h4>
+          <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Subtotal</h6>
+                  <small class="text-muted">Subtotal sin envio</small>
+                </div>
+                <span class="text-muted numbers" id="productCostSub">-</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Porcentaje</h6>
+                  <small class="text-muted">Según el tipo de envio</small>
+                </div>
+                <span class="text-muted numbers" id="comissiontax">-</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Total</span>
+                <strong id="totalCostCart" class="numbers">-</strong>
+              </li>
+          </ul>
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg mr-2" type="submit">Pagar</button>
+          <button id="cleanCart" class="btn btn-danger btn-lg" type="submit">Vaciar Carrito</button>
+      </div>
+    </div>
+  </div>
   
-  <div class="container p-5">
+  <!-- <div class="container p-5">
     <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
     </div>
-  </div>
+  </div> -->
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
       <div></div>
       <div></div>
       <div></div>
+    </div>
+  </div>
+  
+  <footer class="bg-dark text-white">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Condiciones de publicación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+              <div class="row">
+                  <h5 class="text-warning">Gold (13%)</h5>
+                  <p class="muted text-justify">Tu producto se verá de forma promocionada en portada, además de las condiciones de Premium y Estándar.</p>
+              </div>
+              <hr>
+              <div class="row">
+                  <h5 class="text-primary">Stándar (7%)</h5>
+                  <p class="muted text-justify">Se mostrará el producto en los primeros lugares de resultados de búsqueda, así cómo cuando se ingrese a la categoría que pertenezca.</p>
+              </div>
+              <hr>
+              <div class="row">
+                  <h5 class="text-secondary">Estándar (3%)</h5>
+                  <p class="muted text-justify">El producto se listará en la categoría correspondiente, así como en los resultados de búsquedas que coincidan con las palabras claves en el nombre.</p>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
     </div>
   </div>
   <script src="https://apis.google.com/js/platform.js" async defer></script>

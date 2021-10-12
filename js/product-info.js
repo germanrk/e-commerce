@@ -238,7 +238,4 @@ document.addEventListener("DOMContentLoaded", function(e){
     
     document.getElementById("commentsImg").src=sessionStorage.getItem("img");
 
-    // function ProdtRelations(){
-
-    // }
 });
