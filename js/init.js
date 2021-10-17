@@ -210,20 +210,20 @@ return [day, month , year].join(`-`) + ` | ` + [hours, minutes].join(`:`);
       }
     });
 
-    if(document.getElementById("logout")){
-      showLogout(getName, getImg, getLast_connection)
-    }
-
+    
     if(document.getElementById("exitGoogle")){
       document.getElementById("exitGoogle").onclick = ()=>{
         window.location.href ="./index.html"
       }
     }
-
+    
     if(document.getElementById("exit")){
       document.getElementById("exit").onclick = ()=>{
         localStorage.clear()
         sessionStorage.clear()
       }
+    }
+    if(document.getElementById("logout")){
+      showLogout(getName, getImg, getLast_connection)
     }
 });

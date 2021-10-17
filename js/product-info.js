@@ -84,35 +84,79 @@ function showRelated(array){
     });
 }
 
-
-
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("newComment").value = ``;
-    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
-        if (resultObj.status === "ok")
-        {
-            product = resultObj.data;
+    let car = sessionStorage.getItem("carName")
+    if(car){
+        getJSONData(PRODUCTS_URL).then(function(resultObj){
 
-            let productsNameHTML  = document.getElementById("categoryName");
-            let productsDescriptionHTML = document.getElementById("productDescription");
-            let productCoust = document.getElementById("ProductCoust");
-            let productSold = document.getElementById("productSold");
+            if (resultObj.status === "ok"){
+                product = resultObj.data;
+                for (let i = 0; i < product.length; i++) {
+                    const element = product[i];                    
+                    if(element.name === car){
+                        let elementNameHTML  = document.getElementById("categoryName");
+                        let elementDescriptionHTML = document.getElementById("productDescription");
+                        let elementCoust = document.getElementById("ProductCoust");
+                        let elementSold = document.getElementById("productSold");
+        
+                        elementSold.innerHTML = element.soldCount
+                        elementCoust.innerHTML = element.currency
+                        elementCoust.innerHTML += ` ` + Intl.NumberFormat("de-DE").format(element.cost)
+                        elementNameHTML.innerHTML = toUpperWord(element.name);
+                        elementDescriptionHTML.innerHTML = element.description;
+        
+                        //Muestro las imagenes en forma de galería
+                        document.getElementById("oneImage").innerHTML=`
 
-            showRelated(product.relatedProducts);
-            productRelevant = product.relatedProducts;
-            productSold.innerHTML = product.soldCount
-            productCoust.innerHTML = product.currency
-            productCoust.innerHTML += ` ` + Intl.NumberFormat("de-DE").format(product.cost)
-            productsNameHTML.innerHTML = toUpperWord(product.name);
-            productsDescriptionHTML.innerHTML = product.description;
+                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="${element.imgSrc}" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        `
+                        // <img src="${element.imgSrc}">
+                    }
+                }
+            }
 
-            //Muestro las imagenes en forma de galería
-            showImagesGallery(product.images);
-        }
-    });
+        })
+    }else{
+        getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
+
+            if (resultObj.status === "ok"){
+                product = resultObj.data;
+                let productsNameHTML  = document.getElementById("categoryName");
+                let productsDescriptionHTML = document.getElementById("productDescription");
+                let productCoust = document.getElementById("ProductCoust");
+                let productSold = document.getElementById("productSold");
+
+                showRelated(product.relatedProducts);
+                productRelevant = product.relatedProducts;
+                productSold.innerHTML = product.soldCount
+                productCoust.innerHTML = product.currency
+                productCoust.innerHTML += ` ` + Intl.NumberFormat("de-DE").format(product.cost)
+                productsNameHTML.innerHTML = toUpperWord(product.name);
+                productsDescriptionHTML.innerHTML = product.description;
+
+                //Muestro las imagenes en forma de galería
+                showImagesGallery(product.images);
+            }
+        });
+    }
 
     let totalComments = 0;
 

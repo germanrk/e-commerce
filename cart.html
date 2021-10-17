@@ -90,15 +90,15 @@
                 <h5 class="mb-3">Tipo de envio</h5>
                 <div id="envio" class="d-block my-3">
                   <div class="custom-control custom-radio">
-                    <input id="goldradio" name="envioType" type="radio" class="custom-control-input" checked>
+                    <input id="goldradio" name="envioType" type="radio" class="custom-control-input" checked onchange="showPercentAndTotal(articles)">
                     <label class="custom-control-label" for="goldradio">Gold (13%)</label>
                   </div>
                   <div class="custom-control custom-radio">
-                    <input id="premiumradio" name="envioType" type="radio" class="custom-control-input">
+                    <input id="premiumradio" name="envioType" type="radio" class="custom-control-input" onchange="showPercentAndTotal(articles)">
                     <label class="custom-control-label" for="premiumradio">Premium (7%)</label>
                   </div>
                   <div class="custom-control custom-radio">
-                    <input id="standardradio" name="envioType" type="radio" class="custom-control-input">
+                    <input id="standardradio" name="envioType" type="radio" class="custom-control-input" onchange="showPercentAndTotal(articles)">
                     <label class="custom-control-label" for="standardradio">Estándar (3%)</label>
                     <div class="row">
                       <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver condiciones</button>

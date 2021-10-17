@@ -13,7 +13,7 @@ function showProductList(){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 
             htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
+            <a href="#" id="${product.name}" class="list-group-item list-group-item-action" onclick="save(this.id)">
                 <div class="row">
                     <div class="col-3">
                         <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">
@@ -128,24 +128,26 @@ function searchFilter() {
 
         newCurrentProducArray.forEach(product => {
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">
-                    </div>
-                    <div class="col-6">
-                        <h4 class="mb-1">`+ product.name +`</h4>
-                        <p>` + product.description + `</p>
-                    </div>
-                    <div class="col-3">
-                        <div class="d-flex justify-content-end">
-                            <p class="text-muted">`+ product.currency+ ` ` + Intl.NumberFormat("de-DE").format(product.cost)  + `</p>
-                            <p class="text-muted ml-2">|</p>
-                            <p class="text-muted ml-2">`+ product.soldCount+ ` Vendidos</p>
+            <a href="#" id="${product.name}" class="list-group-item list-group-item-action" onclick="save(this.id)">
+                <div class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">
+                        </div>
+                        <div class="col-6">
+                            <h4 class="mb-1">`+ product.name +`</h4>
+                            <p>` + product.description + `</p>
+                        </div>
+                        <div class="col-3">
+                            <div class="d-flex justify-content-end">
+                                <p class="text-muted">`+ product.currency+ ` ` + Intl.NumberFormat("de-DE").format(product.cost)  + `</p>
+                                <p class="text-muted ml-2">|</p>
+                                <p class="text-muted ml-2">`+ product.soldCount+ ` Vendidos</p>
+                            </div>
                         </div>
                     </div>
-                 </div>
-            </div>
+                </div>
+            </a>
             `
         });
 
@@ -164,10 +166,18 @@ function searchFilter() {
     document.getElementById("main").innerHTML = htmlContentToAppend;
 }
 
+function save(name){
+    if(name != "Chevrolet Onix Joy"){
+        sessionStorage.setItem("carName", `${name}`);
+    }
+    window.location.href="./product-info.html"
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
+    sessionStorage.removeItem('carName');
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             list_products = resultObj.data;

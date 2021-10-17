@@ -10,7 +10,7 @@ function addCart(array, id){
     let appendHtml = ``;
     let count = 0;
 
-    if(array.length == 0){
+    if(array.length === 0){
         $(`#${id}`).html(``);
     }else{
         for (let i = 0; i < array.length; i++) {
@@ -63,7 +63,6 @@ function addCart(array, id){
     showPercentAndTotal(array);
     $("#totalCostCart").prepend(money);
 }
-
 
 function changeInput(val, id, array, add){
 
