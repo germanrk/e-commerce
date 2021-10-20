@@ -40,7 +40,7 @@ function addCart(array, id){
                 </div>
                                 
                 <div class="col-1 p-0 mr-0 ml-0 d-flex justify-content-center">
-                    <input type="number" class="form-control" id="${name}" placeholder="1" min="1" onchange="changeInput(this.value, this.id, articles, 'productCart')">
+                    <input type="number" class="form-control" id="${name}" placeholder="1" min="1" value="${count}" onchange="changeInput(this.value, this.id, articles, 'productCart')">
                 </div>
                                 
                 <div class="col-3 p-0 mr-0 ml-0 d-flex justify-content-center">

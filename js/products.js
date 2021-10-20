@@ -13,7 +13,7 @@ function showProductList(){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 
             htmlContentToAppend += `
-            <a href="#" id="${product.name}" class="list-group-item list-group-item-action" onclick="save(this.id)">
+            <a href="#" id="${product.name}" class="list-group-item list-group-item-action" onclick="save('${product.name}')">
                 <div class="row">
                     <div class="col-3">
                         <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">

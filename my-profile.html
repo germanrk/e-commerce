@@ -44,13 +44,79 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
+  <div class="container p-5 h-100" id="form">
+    <form class="row g-3 needs-validation mb-3" novalidate > 
+      <div class="col-md-6 position-relative mb-3">
+        <label for="firstName" class="form-label">Primer Nombre *</label>
+        <input type="text" class="form-control" id="firstName" required>
+        <div class="valid-tooltip">
+          Perfecto
+        </div>
+        <div class="invalid-tooltip">
+          Porfavor introduzca su primer nombre
+        </div>
+      </div>
+      <div class="col-md-6 position-relative mb-3">
+        <label for="secondName" class="form-label">Segundo Nombre</label>
+        <input type="text" class="form-control" id="secondName">
+      </div>
+      <div class="col-md-4 position-relative mb-3">
+        <label for="lastName" class="form-label">Primer Apellido *</label>
+        <input type="text" class="form-control" id="lastName" required>
+        <div class="valid-tooltip">
+          Perdecto
+        </div>
+        <div class="invalid-tooltip">
+          Porfavor introduzca primer apellido
+        </div>
+      </div>
+      <div class="col-md-4 position-relative mb-3">
+        <label for="middleName" class="form-label">Segundo Apellido</label>
+        <input type="text" class="form-control" id="middleName">
+      </div>
+      <div class="col-md-4 position-relative mb-3">
+        <label for="email" class="form-label">Correo electrónico *</label>
+        <div class="input-group has-validation">
+          <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+          <input type="email" class="form-control" id="email" aria-describedby="validationTooltipUsernamePrepend" required>
+          <div class="valid-tooltip">
+            Perfecto
+          </div>
+          <div class="invalid-tooltip">
+            Porfavor introduzca su Correo electronico
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 position-relative mb-3">
+        <label for="fono" class="form-label">Telefono *</label>
+        <input type="number" class="form-control" id="fono" required>
+        <div class="invalid-tooltip">
+          Porfavor introduzca su telefono
+        </div>
+      </div>
+      <div class="col-md-3 position-relative mb-3">
+        <label for="yearsOld" class="form-label">Edad *</label>
+        <input type="number" class="form-control" id="yearsOld" required>
+        <div class="valid-tooltip">
+          Perfecto
+        </div>
+        <div class="invalid-tooltip">
+          Porfavor introduzca su edad
+        </div>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-primary mt-3" id="btn-submit" type="submit">Guardar</button>
+      </div>
+      <div class="col-6" id="edit">
+
+      </div>
+    </form>
+    <!-- <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+    </div> -->
   </div>
   <footer class="bg-dark text-white">
     <div class="container">
