@@ -25,7 +25,7 @@ function showDataUser() {
             document.getElementById("yearsOld").value = datos.yearsOld;
             
             document.getElementById("edit").innerHTML = `
-            <button class="btn btn-success mt-3" id="btnEdit" type="button" onclick="editProfile()">Editar datos</button>
+            <button class="btn btn-success mt-3" id="btnEdit" data-toggle="modal" data-target="#contidionsModal" type="button" onclick="editProfile()">Editar datos</button>
             `
             muteDataProfile();
         }
