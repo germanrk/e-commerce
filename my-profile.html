@@ -21,6 +21,13 @@
       -ms-user-select: none;
       user-select: none;
     }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    input[type=number] { -moz-appearance:textfield; }
+
 
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
@@ -94,9 +101,9 @@
           Porfavor introduzca su telefono
         </div>
       </div>
-      <div class="col-md-3 position-relative mb-3">
+      <div class="col-md-1 position-relative mb-3">
         <label for="yearsOld" class="form-label">Edad *</label>
-        <input type="number" class="form-control" id="yearsOld" required>
+        <input type="number" class="form-control" min="1" id="yearsOld" required>
         <div class="valid-tooltip">
           Perfecto
         </div>
@@ -104,9 +111,23 @@
           Porfavor introduzca su edad
         </div>
       </div>
+      <div class="col-md-5 position-relative mb-3">
+        <a href="https://imgbb.com/upload" target="_blank" style="text-decoration: none; color: rgb(90, 90, 90)">
+          <label class="form-label">Si desea subir una imagen click aqui</label>
+        </a>
+        <div class="d-flex">
+          <input class="form-control h-20 w-55" id="formFile" placeholder="Pegue aqui el link">
+          <img src="" id="bannerImg" class="w-25 h-25 ml-2" style="display: none;">
+        </div>
+        <div class="valid-tooltip">
+          Perfecto
+        </div>
+      </div>
+
       <div class="col-6">
         <button class="btn btn-primary mt-3" id="btn-submit" type="submit">Guardar</button>
       </div>
+
       <div class="col-6" id="edit">
 
       </div>
@@ -118,7 +139,7 @@
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
     </div> -->
   </div>
-  <footer class="bg-dark text-white">
+  <footer class="bg-dark text-white fixed-bottom">
     <div class="container">
       <p class="float-right">
         <a href="#">Volver arriba</a>

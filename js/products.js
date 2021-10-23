@@ -4,34 +4,61 @@
 // 
 // 
 
-function showProductList(){
+function checkedGid(){
+    if(document.getElementById('grip-horiz').checked){
+        return 'grip-horiz'
+    }else{
+        return 'list-ul'
+    }
+}
+
+function showProductList(checked){
     let htmlContentToAppend = "";
     for(let i = 0; i < currentProductArray.length; i++){
         let product = currentProductArray[i];
         
         if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
+                if(checked === `list-ul` || checked === 'list-ulLabel'){
+                    htmlContentToAppend += `
+                    <a href="#" id="${product.name}" class="list-group-item list-group-item-action" onclick="save('${product.name}')">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">
+                        </div>
+                        <div class="col-6">
+                            <h4 class="mb-1">`+ product.name +`</h4>
+                            <p>` + product.description + `</p>
+                        </div>
+                        <div class="col-3">
+                            <div class="d-flex justify-content-end">
+                                <p class="text-muted">`+ product.currency+ ` ` +Intl.NumberFormat("de-DE").format(product.cost)  + `</p>
+                                <p class="text-muted ml-2">|</p>
+                                <p class="text-muted ml-2">`+ product.soldCount+ ` Vendidos</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                `
 
-            htmlContentToAppend += `
-            <a href="#" id="${product.name}" class="list-group-item list-group-item-action" onclick="save('${product.name}')">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">
-                    </div>
-                    <div class="col-6">
-                        <h4 class="mb-1">`+ product.name +`</h4>
-                        <p>` + product.description + `</p>
-                    </div>
-                    <div class="col-3">
-                        <div class="d-flex justify-content-end">
+                }else{
+                    htmlContentToAppend += `
+                    <div class="col-md-4">
+                    <a href="#" id="${product.name}" class="card mb-4 shadow-sm custom-card" onclick="save('${product.name}')">
+                        <img class="bd-placeholder-img card-img-top"  src="${product.imgSrc}">
+                        <h3 class="text-center">${product.name}</h3>
+                        <div class="d-flex justify-content-center">
                             <p class="text-muted">`+ product.currency+ ` ` +Intl.NumberFormat("de-DE").format(product.cost)  + `</p>
                             <p class="text-muted ml-2">|</p>
                             <p class="text-muted ml-2">`+ product.soldCount+ ` Vendidos</p>
                         </div>
-                    </div>
-                 </div>
-            </a>
-            `
+                        <div class="card-body">
+                            <p class="card-text">${product.description}</p>
+                        </div>
+                    </a>
+                </div>
+                `
+                }
         }
     document.getElementById("main").innerHTML = htmlContentToAppend;
     }
@@ -106,7 +133,7 @@ function sortAndShowProduct(sortCriteria, productArray){
     }
     currentProductArray = sortProducts(currentSortCriteria, currentProductArray);
 
-    showProductList();
+    showProductList(checkedGid());
 }
 
 // 
@@ -115,7 +142,7 @@ function sortAndShowProduct(sortCriteria, productArray){
 // 
 // 
 
-function searchFilter() {
+function searchFilter(checked) {
     
     let input_search = $("#search_product"); 
     let textSearch = input_search.val();
@@ -125,31 +152,52 @@ function searchFilter() {
     newCurrentProducArray = currentProductArray.filter(product => 
          (product.name?.match(regEx(textSearch)) || product.description?.match(regEx(textSearch)))
     )
-
-        newCurrentProducArray.forEach(product => {
-            htmlContentToAppend += `
-            <a href="#" id="${product.name}" class="list-group-item list-group-item-action" onclick="save(this.id)">
-                <div class="list-group-item list-group-item-action">
-                    <div class="row">
-                        <div class="col-3">
-                            <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">
-                        </div>
-                        <div class="col-6">
-                            <h4 class="mb-1">`+ product.name +`</h4>
-                            <p>` + product.description + `</p>
-                        </div>
-                        <div class="col-3">
-                            <div class="d-flex justify-content-end">
-                                <p class="text-muted">`+ product.currency+ ` ` + Intl.NumberFormat("de-DE").format(product.cost)  + `</p>
-                                <p class="text-muted ml-2">|</p>
-                                <p class="text-muted ml-2">`+ product.soldCount+ ` Vendidos</p>
+        if(checked === `list-ul` || checked === 'list-ulLabel'){
+            newCurrentProducArray.forEach(product => {
+                htmlContentToAppend += `
+                <a href="#" id="${product.name}" class="list-group-item list-group-item-action" onclick="save(this.id)">
+                    <div class="list-group-item list-group-item-action">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">
+                            </div>
+                            <div class="col-6">
+                                <h4 class="mb-1">`+ product.name +`</h4>
+                                <p>` + product.description + `</p>
+                            </div>
+                            <div class="col-3">
+                                <div class="d-flex justify-content-end">
+                                    <p class="text-muted">`+ product.currency+ ` ` + Intl.NumberFormat("de-DE").format(product.cost)  + `</p>
+                                    <p class="text-muted ml-2">|</p>
+                                    <p class="text-muted ml-2">`+ product.soldCount+ ` Vendidos</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+                `
+            });
+
+        }else{
+            newCurrentProducArray.forEach(product => {
+                htmlContentToAppend += `
+                <div class="col-md-4">
+                <a href="#" id="${product.name}" class="card mb-4 shadow-sm custom-card" onclick="save('${product.name}')">
+                    <img class="bd-placeholder-img card-img-top"  src="${product.imgSrc}">
+                    <h3 class="text-center">${product.name}</h3>
+                    <div class="d-flex justify-content-center">
+                        <p class="text-muted">`+ product.currency+ ` ` +Intl.NumberFormat("de-DE").format(product.cost)  + `</p>
+                        <p class="text-muted ml-2">|</p>
+                        <p class="text-muted ml-2">`+ product.soldCount+ ` Vendidos</p>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">${product.description}</p>
+                    </div>
+                </a>
+            </div>
             `
-        });
+            });
+        }
 
     if(newCurrentProducArray.length === 0){
         htmlContentToAppend =
@@ -177,6 +225,7 @@ function save(name){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
+
     sessionStorage.removeItem('carName');
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
@@ -216,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         minCount = undefined;
         maxCount = undefined;
 
-        showProductList();
+        showProductList(checkedGid());
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
@@ -237,11 +286,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
             maxCount = undefined;
         }
 
-        showProductList();
+        showProductList(checkedGid());
     });
 
     $("#search_product").on("input", function() {
-        searchFilter();
+        searchFilter(checkedGid());
     });
+
+    document.getElementById("list-ulLabel").addEventListener("click", function(){
+        showProductList(this.id);
+
+    })
+
+    document.getElementById("grip-horizLabel").addEventListener("click", function(){
+        showProductList(this.id);
+
+    })
 
 });

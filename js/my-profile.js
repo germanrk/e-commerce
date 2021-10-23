@@ -13,9 +13,9 @@ function addData(firstName, secondName, lastName, middleName, email, fono, years
 
 function showDataUser() {
     let data = JSON.parse(localStorage.getItem('datosUser'));
+    if(data){
     for (let i = 0; i < data.length; i++) {
         const datos = data[i];
-        if(data){
             document.getElementById("firstName").value = datos.firstName;
             document.getElementById("secondName").value = datos.secondName;
             document.getElementById("lastName").value = datos.lastName;
@@ -23,11 +23,16 @@ function showDataUser() {
             document.getElementById("email").value = datos.email;
             document.getElementById("fono").value = datos.fono;
             document.getElementById("yearsOld").value = datos.yearsOld;
+            document.getElementById("formFile").value = sessionStorage.getItem('img');
             
             document.getElementById("edit").innerHTML = `
             <button class="btn btn-success mt-3" id="btnEdit" data-toggle="modal" data-target="#contidionsModal" type="button" onclick="editProfile()">Editar datos</button>
             `
+            document.getElementById("btn-submit").style.display = "block";
+            document.getElementById("edit").style.float = "left";
+            
             muteDataProfile();
+
         }
     }
 }
@@ -40,9 +45,13 @@ function muteDataProfile(){
     document.getElementById("email").disabled = true;
     document.getElementById("fono").disabled = true;
     document.getElementById("yearsOld").disabled = true;
+    document.getElementById("formFile").disabled = true;
+    document.getElementById("formFile").disabled = true;
+    document.getElementById("btn-submit").style.display = "none";
 }
 
 function editProfile(){
+
     document.getElementById("firstName").disabled = false;
     document.getElementById("secondName").disabled = false;
     document.getElementById("lastName").disabled = false;
@@ -50,10 +59,29 @@ function editProfile(){
     document.getElementById("email").disabled = false;
     document.getElementById("fono").disabled = false;
     document.getElementById("yearsOld").disabled = false;
+    document.getElementById("formFile").disabled = false;
+    document.getElementById("formFile").disabled = false;
+    document.getElementById("btn-submit").style.display = "block";
+
 
     document.getElementById("edit").innerHTML = `
     <button class="btn btn-danger mt-3" type="button" onclick="showDataUser()">Cancelar</button>`
 
+}
+
+
+function getBase64Image(img){
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL("image/png");
+    console.log(dataURL);
+
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -72,7 +100,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 let middName = document.getElementById("middleName").value;
                 let email = document.getElementById("email").value;
                 let fono = document.getElementById("fono").value;
-                let yearsOld = document.getElementById("yearsOld").value;        
+                let yearsOld = document.getElementById("yearsOld").value;      
+                sessionStorage.setItem("img", document.getElementById("formFile").value)
                 addData(firstName, secondName, lastName, middName, email, fono, yearsOld)
                 form.classList.add('was-validated')
 
@@ -80,4 +109,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         })
     })()
     showDataUser();
+
+    bannerImage = document.getElementById('bannerImg');
+    imgData = getBase64Image(bannerImage);
+    localStorage.setItem("imgData", imgData);
 });

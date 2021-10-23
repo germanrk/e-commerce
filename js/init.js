@@ -134,14 +134,12 @@ function showLogout(name, image, last_connection){
       <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+toUpperWord(name)+`</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+last_connection+`</a>
-        <a class="dropdown-item" href="../my-profile.html"> Mi perfil</a>
-        <a class="dropdown-item" href="../cart.html"> Ir al carrito</a>
+        <a class="dropdown-item" href="./my-profile.html"> Mi perfil</a>
+        <a class="dropdown-item" href="./cart.html"> Ir al carrito</a>
         <a class="dropdown-item" id="exitGoogle" href="#"> Cerrar Sesion</a>
       </div>
     `
   }else{
-    sessionStorage.removeItem(`img`)
-    sessionStorage.setItem(`img`, `https://www.prensalibre.com/wp-content/uploads/2019/05/1467646262_522853_1467646344_noticia_normal.jpg?quality=82&w=664`)
 
     appendNav += `
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -150,8 +148,8 @@ function showLogout(name, image, last_connection){
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ toUpperWord(sessionStorage.getItem("name")) +`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión ` +last_connection+ `</a>
-        <a class="dropdown-item" href="../my-profile.html"> Mi perfil</a>
-        <a class="dropdown-item" href="../cart.html"> Ir al carrito</a>
+        <a class="dropdown-item" href="./my-profile.html"> Mi perfil</a>
+        <a class="dropdown-item" href="./cart.html"> Ir al carrito</a>
         <a class="dropdown-item" id"exit" href="#" onclick="exit()">Cerrar Sesion</a>
       </div>
     `

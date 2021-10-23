@@ -37,7 +37,7 @@
         </div>
       </div>
         <div class="row">
-            <div class="col text-right">
+            <div class="col-11 text-right">
                 <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
                     <label class="btn btn-light active" id="sortAsc" >
                       <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-sort-alpha-down"></i>
@@ -64,6 +64,18 @@
                     </label>
                 </div>
             </div>
+            <div class="col-1 text-right">
+              <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+
+                <label class="btn btn-light active" id="grip-horizLabel">
+                  <input type="radio" name="optionsList" id="grip-horiz" autocomplete="off" checked><i class="fas fa-grip-horizontal"></i>
+                </label>
+                
+                <label class="btn btn-light" id="list-ulLabel">
+                  <input type="radio" name="optionsList" id="list-ul" autocomplete="off"><i class="fas fa-list-ul"></i>
+                </label>
+              </div>
+          </div>
         </div>
         <div class="row justify-content-end">
           <div class="col-md-6"></div>
@@ -87,11 +99,13 @@
               </div>
             </div>
         </div>
-        <div class="row">
+        <div class="container">
+          <div class="row">
             <div class="list-group" id="cat-list-container">
             </div>
+          </div>
         </div>
-    </div>
+      </div>
       <div class="row mb-5" id="main">
 
       </div>
