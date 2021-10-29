@@ -26,7 +26,7 @@ function showDataUser() {
             document.getElementById("formFile").value = sessionStorage.getItem('img');
             
             document.getElementById("edit").innerHTML = `
-            <button class="btn btn-success mt-3" id="btnEdit" data-toggle="modal" data-target="#contidionsModal" type="button" onclick="editProfile()">Editar datos</button>
+            <button class="btn btn-success mt-3" id="btnEdit" data-toggle="modal" data-target="#contidionsModal" type="button">Editar datos</button>
             `
             document.getElementById("btn-submit").style.display = "block";
             document.getElementById("edit").style.float = "left";
@@ -100,8 +100,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 let middName = document.getElementById("middleName").value;
                 let email = document.getElementById("email").value;
                 let fono = document.getElementById("fono").value;
-                let yearsOld = document.getElementById("yearsOld").value;      
-                sessionStorage.setItem("img", document.getElementById("formFile").value)
+                let yearsOld = document.getElementById("yearsOld").value;
+                if(document.getElementById("formFile").value != ``){
+                    sessionStorage.setItem("img", document.getElementById("formFile").value)
+                }
                 addData(firstName, secondName, lastName, middName, email, fono, yearsOld)
                 form.classList.add('was-validated')
 
@@ -110,7 +112,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
     })()
     showDataUser();
 
-    bannerImage = document.getElementById('bannerImg');
-    imgData = getBase64Image(bannerImage);
-    localStorage.setItem("imgData", imgData);
+    document.getElementById("btnVeriPass").addEventListener("click", function(e){
+        let pass = document.getElementById("passUser").value;
+        if(pass === sessionStorage.getItem('pass')){
+            editProfile()
+            document.getElementById("closeVeri").click()
+        }else{
+            alert("su pass esta mal")
+        }
+    })
 });

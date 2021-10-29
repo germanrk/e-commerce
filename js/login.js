@@ -63,19 +63,17 @@ function validationLogin(){
 
     if((email !=``) && (pass != ``)){
         sessionStorage.setItem('name', email);
+        sessionStorage.setItem(`pass`, pass);
         sessionStorage.setItem("prueba", "este es una prueba")
         sessionStorage.setItem("last_connection", formatDateTime(dateTime()))
-        if(sessionStorage.getItem(`img`)){
-
-        }else{
+        if(sessionStorage.getItem(`img`)===null){
+          sessionStorage.setItem(`img`, `https://www.prensalibre.com/wp-content/uploads/2019/05/1467646262_522853_1467646344_noticia_normal.jpg?quality=82&w=664`)
+        }else if(sessionStorage.getItem(`img`)===``){
           sessionStorage.setItem(`img`, `https://www.prensalibre.com/wp-content/uploads/2019/05/1467646262_522853_1467646344_noticia_normal.jpg?quality=82&w=664`)
         }
         window.location.href="./inicio.html"
-
-      }else{(email != `user`) && (pass != `user`)
-        // $("#alert-help").show()
-        verificationStatus("alert-help")
       }
+
   }
 
 $("#password-login").keyup(function (event) {
@@ -96,4 +94,8 @@ document.getElementById("btn-login").onclick=function(){
 
 document.getElementById("googleIntro").onclick=function(){
   window.location.href="./inicio.html";
+}
+
+document.getElementById("register").onclick=function(){
+  window.location.href="./register.html";
 }

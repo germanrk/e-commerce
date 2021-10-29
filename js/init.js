@@ -162,6 +162,7 @@ function signOut() {
   auth2.signOut().then(function () {
     verificationStatus("logout-google");
     verificationStatus("login-google");
+    document.getElementById("btn-login-google").style.display = "none";
     localStorage.clear()
     sessionStorage.clear()
   });
@@ -203,16 +204,11 @@ function exit(){
   window.location.href ="./index.html"
 }
 
+
     //Función que se ejecuta una vez que se haya lanzado el evento de
     //que el documento se encuentra cargado, es decir, se encuentran todos los
     //elementos HTML presentes.
     document.addEventListener("DOMContentLoaded", function(e){
-      fetch(LIST_CHANGE)
-        .then(result => result.json())
-        .then(data => {
-          change = data.rates
-        })
-    
     if(document.getElementById("exitGoogle")){
       document.getElementById("exitGoogle").onclick = ()=>{
         localStorage.clear()

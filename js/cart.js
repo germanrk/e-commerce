@@ -22,9 +22,9 @@ function addCart(array, id){
             count = parseInt(product.count);
             
             if(money === `USD`){
-                cost = changer(cost, money);
+                cost = cost * 45
             }
-               money = `$`
+            money = `$`
             appendHtml += `
             <div class="row" id="${name}Row">
                 <div class="col-2 p-0 mr-0 ml-0 mt-2 d-flex justify-content-center">
@@ -119,11 +119,10 @@ function showSubTotal(array){
     for (let i = 0; i < array.length; i++) {
         const price = array[i];
         if(price.currency === "USD"){
-            usd += price.count * changer(price.unitCost, price.currency);
-            currency = `$`;
-        }else{
-            uyu += price.unitCost * price.count;
+            usd += ((price.unitCost * price.count) * 45);
         }
+        uyu += price.unitCost * price.count;
+
     }
    total = uyu + usd;
    return total;
@@ -160,11 +159,9 @@ function showPercentAndTotal(array){
 }
 
 
-document.addEventListener("DOMContentLoaded", function(e){
-    showCart("productCart", "https://japdevdep.github.io/ecommerce-api/cart/654.json");
+showCart("productCart", "https://japdevdep.github.io/ecommerce-api/cart/654.json");
 
-    $("#cleanCart").click(function (){
-        cleanCart();
-    });
-
+$("#cleanCart").click(function (){
+    cleanCart();
 });
+
