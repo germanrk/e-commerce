@@ -183,7 +183,7 @@ function showLogout(name, image, last_connection){
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión `+last_connection+`</a>
         <a class="dropdown-item" href="./my-profile.html"> Mi perfil</a>
         <a class="dropdown-item" href="./cart.html"> Ir al carrito</a>
-        <a class="dropdown-item" id="exitGoogle" href="#" onclick="exit()> Cerrar Sesion</a>
+        <a class="dropdown-item" id="exitGoogle" href="#" onclick="exit()"> Cerrar Sesion</a>
       </div>
     `
   }else{
