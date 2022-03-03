@@ -128,6 +128,14 @@ function showSubTotal(array){
    return total;
 }
 
+function dateTarjet() {
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var year = dateObj.getUTCFullYear();
+
+    return newdate = month + "/" + year;
+}
+
 function showPercentAndTotal(array){
     const radios = document.getElementsByTagName('input');
     let total = 0;
@@ -165,3 +173,101 @@ $("#cleanCart").click(function (){
     cleanCart();
 });
 
+var radios = document.querySelectorAll('input[type=radio][name="metodo-pago"]')
+function changeHandler(event) {
+    if(this.id === "trasference"){
+        let addButtom =`
+        <button type="button" id="proceedPayment" class="btn btn-block btn-primary" onclick="payVerification('wireTransfer')">Continuar el pago</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>`
+        document.getElementById("transactionCard").style.display = "none";
+        document.getElementById("transactionPaypal").style.display = "none";
+        document.getElementById("wireTransfer").style.display = "block";
+        document.getElementById("footerModal").innerHTML = addButtom;
+
+    }else if(this.id === "paypal"){
+        let addButtom =`
+        <button type="button" id="proceedPayment" class="btn btn-block btn-primary" onclick="payVerification('transactionPaypal')">Continuar el pago</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>`
+        document.getElementById("transactionCard").style.display = "none";
+        document.getElementById("wireTransfer").style.display = "none";
+        document.getElementById("transactionPaypal").style.display = "block";
+        document.getElementById("footerModal").innerHTML = addButtom;
+    }else{
+        let addButtom =`
+        <button type="button" id="proceedPayment" class="btn btn-block btn-primary" onclick="payVerification('transactionCard')">Continuar el pago</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>`
+        document.getElementById("transactionPaypal").style.display = "none";
+        document.getElementById("wireTransfer").style.display = "none";
+        document.getElementById("transactionCard").style.display = "block";
+        document.getElementById("footerModal").innerHTML = addButtom;
+    }
+ }
+
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      var forms = document.getElementsByClassName('needs-validation');
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        document.getElementById("proceedPayment").addEventListener('click', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+    });
+}, false);
+  })();
+
+function validar(){
+    preventDefault();
+}
+
+function payVerification(id){
+    let fields = document.querySelectorAll(`#${id} input`)
+
+    for (let i = 0; i < fields.length; i++) {
+        const input = fields[i];
+        console.log(input.value.length);
+        if(input.value.length === 0){
+        return
+        }
+    }
+    setTimeout(`window.location.href = "./inicio.html"`, 3000);
+    return swal({
+        title: "Su pago se realizo correctamente!",
+        text: "Muchas gracias!",
+        icon: "success",
+        button: false
+    });
+}
+
+document.getElementById("formPayment").addEventListener('submit', validar);
+document.getElementById("tarjeta-expiracion").placeholder = dateTarjet();
+
+ 
+ Array.prototype.forEach.call(radios, function(radio) {
+    radio.addEventListener('change', changeHandler);
+ });
+
+ (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      var forms = document.getElementsByClassName('needsValidationDirection');
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        document.getElementById("toPay").addEventListener('click', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+    });
+}, false);
+  })();
+
+  document.getElementById("countries").addEventListener("click", addCountries(countries, "countries"))
+
+  $( "#countries" ).change(function() {
+    addCities(cities, $(this).val(), "city")
+  });

@@ -32,6 +32,17 @@
     select{
       height: 30px;
     }
+
+    #buy input[type="number"] {
+    -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+            appearance: textfield;
+    }
+    #buy input[type=number]::-webkit-inner-spin-button, 
+    #buy input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    }
+  
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -109,36 +120,74 @@
               <div class="col-8">
                 <h5 class="mb-3">Direccion de envio</h5>
                 <div id="direction">
-                  <form>
+                  <form class="needsValidationDirection">
                     <div class="form-row">
                       <div class="form-group col-md-5">
                         <label for="inputStreet">Calle</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="18 de julio">
+                        <input type="text" class="form-control" id="inputAddress" placeholder="18 de julio" required>
+                        <div class="valid-tooltip">
+                          Perfecto
+                        </div>
+                        <div class="invalid-tooltip">
+                          Porfavor introduzca una calle valida
+                        </div>
                       </div>
                       <div class="form-group col-md-5">
                         <label for="inputStreet2">Esquina</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Ejido">
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="Ejido" required>
+                        <div class="valid-tooltip">
+                          Perfecto
+                        </div>
+                        <div class="invalid-tooltip">
+                          Porfavor introduzca una esquina valida
+                        </div>
                       </div>
                       <div class="form-group col-md-2">
                         <label for="inputDoor">Puerta</label>
-                        <input type="number" class="form-control" id="inputDoor" placeholder="1999">
+                        <input type="number" class="form-control" id="inputDoor" placeholder="1999" required>
+                        <div class="valid-tooltip">
+                          Perfecto
+                        </div>
+                        <div class="invalid-tooltip">
+                          Porfavor introduzca su numero de puerta o senda
+                        </div>
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-5">
-                        <label for="inputState">Departamento</label>
-                        <select id="inputState" class="form-control">
-                          <option selected>Montevideo</option>
-                          <option>...</option>
+                        <label for="countries">Pais</label>
+                        <select id="countries" class="form-control" required>
+                          <option disabled selected>Seleccione su pais</option>
+
                         </select>
+                        <div class="valid-tooltip">
+                          Perfecto
+                        </div>
+                        <div class="invalid-tooltip">
+                          Porfavor introduzca el departamento
+                        </div>
                       </div>
                       <div class="form-group col-md-4">
-                        <label for="inputCity">Ciudad</label>
-                        <input type="text" class="form-control" id="inputCity" placeholder="Montevideo">
+                        <label for="city">Ciudad</label>
+                        <select id="city" class="form-control" required>
+                          <option disabled selected>Seleccione su ciudad</option>
+                        </select>
+                        <div class="valid-tooltip">
+                          Perfecto
+                        </div>
+                        <div class="invalid-tooltip">
+                          Porfavor introduzca su ciudad
+                        </div>
                       </div>
                       <div class="form-group col-md-3">
                         <label for="inputZip">Codigo postal</label>
-                        <input type="number" class="form-control" id="inputZip" placeholder="11100">
+                        <input type="number" class="form-control" id="inputZip" placeholder="11100" required>
+                        <div class="valid-tooltip">
+                          Perfecto
+                        </div>
+                        <div class="invalid-tooltip">
+                          Porfavor introduzca el codigo postal
+                        </div>
                       </div>
                     </div>
                   </form>
@@ -169,8 +218,8 @@
               </li>
           </ul>
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg mr-2" type="submit">Pagar</button>
-          <button id="cleanCart" class="btn btn-danger btn-lg" type="submit">Vaciar Carrito</button>
+          <button class="btn btn-primary btn-lg mr-2" id="toPay" data-toggle="modal" type="button" data-target="#buy">Proceder a pagar</button>
+          <button id="cleanCart" class="btn btn-danger btn-lg">Vaciar Carrito</button>
       </div>
     </div>
   </div>
@@ -234,6 +283,113 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Modal -->
+  
+  <div class="modal fade" tabindex="-1" role="dialog" id="buy">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Elija metodo de pago</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="needs-validation" id="formPayment" novalidate>
+        <div class="modal-body">
+          <div class="d-block mb-3">
+            <div class="custom-control custom-radio">
+              <input type="radio" name="metodo-pago" id="tarjeta-credito" class="custom-control-input" checked>
+              <label for="tarjeta-credito" class="custom-control-label">Tarjeta de Credito</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" name="metodo-pago" id="tarjeta-debito" class="custom-control-input">
+              <label for="tarjeta-debito" class="custom-control-label">Tarjeta de Debito</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" name="metodo-pago" id="paypal" class="custom-control-input">
+              <label for="paypal" class="custom-control-label">Paypal</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" name="metodo-pago" id="trasference" class="custom-control-input">
+              <label for="trasference" class="custom-control-label">Transferencia bancaria</label>
+            </div>
+          </div>
+          <hr class="mb-2">
+          <div id="transactionCard">
+            <div class="row">
+              <div class="col-12 col-sm-6 mb-3">
+                <label for="nameTarjeta">Nombre en la tarjeta</label>
+                <input type="text" id="nameTarjeta" class="form-control" placeholder="German Russomanno" required>
+                <div class="valid-tooltip">
+                  Perfecto
+                </div>
+                <div class="invalid-tooltip">
+                  Porfavor introduzca el nombre tal cual aparce en su tarjeta
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 mb-3">
+                <label for="numberTarjeta">Numero de tarjeta</label>
+                <input type="number" id="numberTarjeta" class="form-control" placeholder="****-****-****-****" required>
+                <div class="valid-tooltip">
+                  Perfecto
+                </div>
+                <div class="invalid-tooltip">
+                  Porfavor introduzca el numero de su tarjeta
+                </div>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col-10 col-sm-4 mb-3">
+                <label for="tarjeta-expiracion">Expiracion</label>
+                <input type="date" id="tarjeta-expiracion" class="form-control" min="2021-11-02" step="30" required>
+                <div class="valid-tooltip">
+                  Perfecto
+                </div>
+                <div class="invalid-tooltip">
+                  Porfavor introduzca la fecha de vencimiento de su tarjeta
+                </div>
+              </div>
+              <div class="col-2 col-sm-4 mb-3">
+                <label for="tarjetaCcv">CVV</label>
+                <input type="number" id="tarjetaCcv" minlength="3" maxlength="4" class="form-control" placeholder="468" required>
+                <div class="valid-tooltip">
+                  Perfecto
+                </div>
+                <div class="invalid-tooltip">
+                  Porfavor introduzca los tres digitos que aparecen detras de su tarjeta
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="transactionPaypal" style ="display: none">
+            <div class="row">
+              <div class="col-12 col-sm-6 mb-3">
+                <label>Proximamente!</label>
+              </div>
+            </div>
+          </div>
+          <div id="wireTransfer" style ="display: none">
+            <div class="row">
+              <div class="col-12 col-sm-6 mb-3">
+                <label for="accountNumber">Banco Republica</label>
+                <input type="number" id="accountNumber" class="form-control" placeholder="*************" required>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" id="footerModal">
+            <button type="button" id="proceedPayment" class="btn btn-block btn-primary" onclick="payVerification(`transactionCard`)">Continuar el pago</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>

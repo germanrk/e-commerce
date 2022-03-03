@@ -9,6 +9,8 @@ const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 const LIST_CHANGE = "http://data.fixer.io/api/latest?access_key=f6a00ddc26464ce6063f48a303a5bb55"
 let change = {};
 let appendNav = ``;
+const countries = "../json/countries.json";
+const cities = "../json/states.json"
 
 // 
 // 
@@ -82,6 +84,51 @@ function toUpperWord(palabra){
 
 // 
 // 
+// funcion para agregar paises a un select
+// 
+// 
+
+function addCountries(urlCountries, idCountries) {      
+  fetch(urlCountries)
+  .then(res => res.json())
+  .then(function(data) {
+      let addHtml = ``;
+      for (let i = 0; i < data.countries.length; i++) {
+          const countrie = data.countries[i];
+          addHtml += `
+          <option value="${countrie.id}">${countrie.name}</option>
+          `
+      }
+      document.getElementById(idCountries).innerHTML = addHtml;
+  })
+}
+
+// 
+// 
+// funcion para agregar ciudades a un select
+// 
+// 
+
+function addCities(url, idCountries, idCities) {      
+  fetch(url)
+  .then(res => res.json())
+  .then(function(data) {
+      let addHtml = ``;
+      for (let i = 0; i < data.states.length; i++) {
+          const city = data.states[i];
+          if(city.id_country === parseInt(idCountries)){
+            addHtml += `
+            <option>${city.name}</option>
+            `
+          }
+      }
+      document.getElementById(idCities).innerHTML = addHtml;
+  })
+}
+
+
+// 
+// 
 // Se se hace el login de Oauth Google
 // 
 // 
@@ -131,9 +178,9 @@ function showLogout(name, image, last_connection){
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       `+toUpperWord(name)+` <img class="imgPerfil ml-2" src="`+image+`">
       </a>
-      <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+toUpperWord(name)+`</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+last_connection+`</a>
+        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+toUpperWord(name)+`</a>
+        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión `+last_connection+`</a>
         <a class="dropdown-item" href="./my-profile.html"> Mi perfil</a>
         <a class="dropdown-item" href="./cart.html"> Ir al carrito</a>
         <a class="dropdown-item" id="exitGoogle" href="#"> Cerrar Sesion</a>
@@ -143,10 +190,10 @@ function showLogout(name, image, last_connection){
 
     appendNav += `
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      `+ toUpperWord(sessionStorage.getItem("name")) +` <img class="imgPerfil ml-2" src="`+ sessionStorage.getItem("img") +`"> 
+      `+ toUpperWord(sessionStorage.getItem("nameG")) +` <img class="imgPerfil ml-2" src="`+ sessionStorage.getItem("img") +`"> 
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ toUpperWord(sessionStorage.getItem("name")) +`</a>
+        <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">`+ toUpperWord(sessionStorage.getItem("nameG")) +`</a>
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión ` +last_connection+ `</a>
         <a class="dropdown-item" href="./my-profile.html"> Mi perfil</a>
         <a class="dropdown-item" href="./cart.html"> Ir al carrito</a>

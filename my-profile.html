@@ -64,7 +64,7 @@
     <form class="row g-3 needs-validation mb-3" novalidate > 
       <div class="col-md-6 position-relative mb-3">
         <label for="firstName" class="form-label">Primer Nombre *</label>
-        <input type="text" class="form-control" id="firstName" required>
+        <input type="text" class="form-control data" id="firstName" required>
         <div class="valid-tooltip">
           Perfecto
         </div>
@@ -74,11 +74,11 @@
       </div>
       <div class="col-md-6 position-relative mb-3">
         <label for="secondName" class="form-label">Segundo Nombre</label>
-        <input type="text" class="form-control" id="secondName">
+        <input type="text" class="form-control data" id="secondName">
       </div>
       <div class="col-md-4 position-relative mb-3">
         <label for="lastName" class="form-label">Primer Apellido *</label>
-        <input type="text" class="form-control" id="lastName" required>
+        <input type="text" class="form-control data" id="lastName" required>
         <div class="valid-tooltip">
           Perdecto
         </div>
@@ -88,13 +88,13 @@
       </div>
       <div class="col-md-4 position-relative mb-3">
         <label for="middleName" class="form-label">Segundo Apellido</label>
-        <input type="text" class="form-control" id="middleName">
+        <input type="text" class="form-control data" id="middleName">
       </div>
       <div class="col-md-4 position-relative mb-3">
         <label for="email" class="form-label">Correo electrónico *</label>
         <div class="input-group has-validation">
           <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
-          <input type="email" class="form-control" id="email" aria-describedby="validationTooltipUsernamePrepend" required>
+          <input type="email" class="form-control data" id="email" aria-describedby="validationTooltipUsernamePrepend" required>
           <div class="valid-tooltip">
             Perfecto
           </div>
@@ -105,14 +105,14 @@
       </div>
       <div class="col-md-6 position-relative mb-3">
         <label for="fono" class="form-label">Telefono *</label>
-        <input type="number" class="form-control" id="fono" required>
+        <input type="number" class="form-control data" id="fono" required>
         <div class="invalid-tooltip">
           Porfavor introduzca su telefono
         </div>
       </div>
       <div class="col-md-1 position-relative mb-3">
         <label for="yearsOld" class="form-label">Edad *</label>
-        <input type="number" class="form-control" min="1" id="yearsOld" required>
+        <input type="number" class="form-control data" min="1" id="yearsOld" required>
         <div class="valid-tooltip">
           Perfecto
         </div>
@@ -125,7 +125,7 @@
           <label class="form-label">Si desea subir una imagen click aqui</label>
         </a>
         <div class="d-flex">
-          <input class="form-control h-20 w-55" id="formFile" placeholder="Pegue aqui el link">
+          <input class="form-control h-20 w-55 data" id="formFile" placeholder="Pegue aqui el link">
           <img src="" id="bannerImg" class="w-25 h-25 ml-2" style="display: none;">
         </div>
         <div class="valid-tooltip">

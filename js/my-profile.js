@@ -38,29 +38,18 @@ function showDataUser() {
 }
 
 function muteDataProfile(){
-    document.getElementById("firstName").disabled = true;
-    document.getElementById("secondName").disabled = true;
-    document.getElementById("lastName").disabled = true;
-    document.getElementById("middleName").disabled = true;
-    document.getElementById("email").disabled = true;
-    document.getElementById("fono").disabled = true;
-    document.getElementById("yearsOld").disabled = true;
-    document.getElementById("formFile").disabled = true;
-    document.getElementById("formFile").disabled = true;
+    let datos = document.getElementsByClassName("data")
+    for (let i = 0; i < datos.length; i++){
+        datos[i].disabled = true
+    }
     document.getElementById("btn-submit").style.display = "none";
 }
 
 function editProfile(){
-
-    document.getElementById("firstName").disabled = false;
-    document.getElementById("secondName").disabled = false;
-    document.getElementById("lastName").disabled = false;
-    document.getElementById("middleName").disabled = false;
-    document.getElementById("email").disabled = false;
-    document.getElementById("fono").disabled = false;
-    document.getElementById("yearsOld").disabled = false;
-    document.getElementById("formFile").disabled = false;
-    document.getElementById("formFile").disabled = false;
+    let datos = document.getElementsByClassName("data")
+    for (let i = 0; i < datos.length; i++){
+        datos[i].disabled = false
+    }
     document.getElementById("btn-submit").style.display = "block";
 
 
