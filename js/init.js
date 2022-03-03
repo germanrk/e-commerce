@@ -183,7 +183,7 @@ function showLogout(name, image, last_connection){
         <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true"> Ultima conexión `+last_connection+`</a>
         <a class="dropdown-item" href="./my-profile.html"> Mi perfil</a>
         <a class="dropdown-item" href="./cart.html"> Ir al carrito</a>
-        <a class="dropdown-item" id="exitGoogle" href="#"> Cerrar Sesion</a>
+        <a class="dropdown-item" id="exitGoogle" href="#" onclick="exit()> Cerrar Sesion</a>
       </div>
     `
   }else{
@@ -256,14 +256,6 @@ function exit(){
     //que el documento se encuentra cargado, es decir, se encuentran todos los
     //elementos HTML presentes.
     document.addEventListener("DOMContentLoaded", function(e){
-    if(document.getElementById("exitGoogle")){
-      document.getElementById("exitGoogle").onclick = ()=>{
-        localStorage.clear()
-        sessionStorage.clear()
-        window.location.href ="./index.html"
-      }
-    }
-
     if(document.getElementById("logout")){
       showLogout(getName, getImg, getLast_connection)
     }
